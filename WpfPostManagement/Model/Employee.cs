@@ -14,6 +14,6 @@ namespace WpfPostManagement.Model
         public ulong Id;
         public string Email;
         public string Password;
-        public string SecondPassword;        
+        public string SecondPassword;               
     }
 }
