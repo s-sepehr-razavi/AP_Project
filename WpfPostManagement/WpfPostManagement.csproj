@@ -12,6 +12,8 @@
     <None Remove="Images\BackGround.jpg" />
     <None Remove="Images\BackGround.png" />
     <None Remove="Images\Customer Register.png" />
+    <None Remove="Images\CustomerService.png" />
+    <None Remove="Images\CustomerService2.png" />
     <None Remove="Images\EmployeePanel.png" />
     <None Remove="Images\LoginLogo.png" />
     <None Remove="Images\Logo.png" />
@@ -23,6 +25,8 @@
 
   <ItemGroup>
     <Resource Include="Images\Customer Register.png" />
+    <Resource Include="Images\CustomerService.png" />
+    <Resource Include="Images\CustomerService2.png" />
     <Resource Include="Images\EmployeePanel.png" />
     <Resource Include="Images\Order.png" />
     <Resource Include="Images\Register2.png" />

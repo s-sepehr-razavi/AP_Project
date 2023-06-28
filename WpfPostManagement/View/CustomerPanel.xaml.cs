@@ -23,5 +23,49 @@ namespace WpfPostManagement.View
         {
             InitializeComponent();
         }
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
+        }
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void btnReportCustomer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnInformationCustomer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnWallet_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnChangeInfo_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnBackCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            LogInView Test = new LogInView();
+            Test.Show();
+            this.Close();
+        }
     }
 }

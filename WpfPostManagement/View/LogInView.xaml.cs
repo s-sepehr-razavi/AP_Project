@@ -44,9 +44,15 @@ namespace WpfPostManagement.View
 
         private void btnLogIN_Click(object sender, RoutedEventArgs e)
         {
-            //Employee Login Page
-            EmployeePanel employeePanel = new EmployeePanel();
-            employeePanel.Show();
+            //Employee Panel
+
+            //EmployeePanel employeePanel = new EmployeePanel();
+            //employeePanel.Show();
+
+            //Customer Panel
+            CustomerPanel customerPanel= new CustomerPanel();
+            customerPanel.Show();
+
             this.Close();
         }
 
