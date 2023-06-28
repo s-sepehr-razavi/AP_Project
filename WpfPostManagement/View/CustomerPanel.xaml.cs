@@ -43,22 +43,34 @@ namespace WpfPostManagement.View
 
         private void btnReportCustomer_Click(object sender, RoutedEventArgs e)
         {
-
+            ReportCustomerPanel.Visibility = Visibility.Visible;
+            BoxInformationPanelCustomer.Visibility = Visibility.Collapsed;
+            WalletPanel.Visibility = Visibility.Collapsed;  
+            ChangeInfoPanle.Visibility= Visibility.Collapsed;
         }
 
         private void btnInformationCustomer_Click(object sender, RoutedEventArgs e)
         {
-
+            ReportCustomerPanel.Visibility = Visibility.Collapsed;
+            BoxInformationPanelCustomer.Visibility = Visibility.Visible;
+            WalletPanel.Visibility = Visibility.Collapsed;
+            ChangeInfoPanle.Visibility = Visibility.Collapsed;
         }
 
         private void btnWallet_Click(object sender, RoutedEventArgs e)
         {
-
+            ReportCustomerPanel.Visibility = Visibility.Collapsed;
+            BoxInformationPanelCustomer.Visibility = Visibility.Collapsed;
+            WalletPanel.Visibility = Visibility.Visible;
+            ChangeInfoPanle.Visibility = Visibility.Collapsed;
         }
 
         private void btnChangeInfo_Click(object sender, RoutedEventArgs e)
         {
-
+            ReportCustomerPanel.Visibility = Visibility.Collapsed;
+            BoxInformationPanelCustomer.Visibility = Visibility.Collapsed;
+            WalletPanel.Visibility = Visibility.Collapsed;
+            ChangeInfoPanle.Visibility = Visibility.Visible;
         }
 
         private void btnBackCustomer_Click(object sender, RoutedEventArgs e)
@@ -91,6 +103,11 @@ namespace WpfPostManagement.View
         }
 
         private void btnChargeAccount_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnOkChangeInfo_Click(object sender, RoutedEventArgs e)
         {
 
         }

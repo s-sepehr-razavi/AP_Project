@@ -226,7 +226,7 @@
                     </StackPanel>
                 </Border>
 
-                <Border Name="WalletPanel" Grid.Column="1" Visibility="Visible" Margin="0,2,0,2" Background="Transparent" Width="716" HorizontalAlignment="Center" BorderThickness="5" BorderBrush="Gray" CornerRadius="12">
+                <Border Name="WalletPanel" Grid.Column="1" Visibility="Collapsed" Margin="0,2,0,2" Background="Transparent" Width="716" HorizontalAlignment="Center" BorderThickness="5" BorderBrush="Gray" CornerRadius="12">
                     <StackPanel>
                         <StackPanel Name="MainWalletPanel" Orientation="Vertical" Visibility="Collapsed">
                             <Image Source="\Images\Wallet.png" Width="200"/>
@@ -279,6 +279,21 @@
                     </StackPanel>
 
 
+                </Border>
+
+                <Border Name="ChangeInfoPanle"  Grid.Column="1" Visibility="Visible" Margin="0,2,0,2" Background="Transparent" Width="716" HorizontalAlignment="Center" BorderThickness="5" BorderBrush="Gray" CornerRadius="12">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="150">New UserName:</TextBlock>
+                            <TextBox Name="txtNewUserName" Background="Transparent" Width="450" Height="35" BorderBrush="#3E454C" BorderThickness="5" FontSize="14" FontFamily="New Times Roman" ></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="150">New Password:</TextBlock>
+                            <TextBox Name="txtNewPassword" Background="Transparent" Width="450" Height="35" BorderBrush="#3E454C" BorderThickness="5" FontSize="14" FontFamily="New Times Roman" ></TextBox>
+                        </StackPanel>
+                        <Button Margin="25" x:Name="btnOkChangeInfo" Click="btnOkChangeInfo_Click" Width="100" Height="50" Content="Ok" FontSize="15" FontFamily="Lucida Handwriting Italic" Background="WhiteSmoke">
+                        </Button>
+                    </StackPanel>
                 </Border>
                 
             </Grid>
