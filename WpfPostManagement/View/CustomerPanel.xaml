@@ -125,7 +125,7 @@
                                 <ComboBoxItem>Document</ComboBoxItem>
                                 <ComboBoxItem>Fragile</ComboBoxItem>
                             </ComboBox>
-                        </StackPanel>
+                        </StackPanel> 
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Price:</TextBlock>
                             <TextBox Name="txtSearchBasePriceCustomer" Background="Transparent" Width="500" Height="35" BorderBrush="#3E454C" BorderThickness="5" FontSize="14" FontFamily="New Times Roman" ></TextBox>
@@ -147,8 +147,83 @@
                     </StackPanel>
                 </Border>
 
-                <Border Name="BoxInformationPanelCustomer" Grid.Column="1" Visibility="Collapsed" Margin="0,2,0,2" Background="Transparent" Width="716" HorizontalAlignment="Center" BorderThickness="5" BorderBrush="Gray" CornerRadius="12">
-                    
+                <Border Name="BoxInformationPanelCustomer" Grid.Column="1" Visibility="Visible" Margin="0,2,0,2" Background="Transparent" Width="716" HorizontalAlignment="Center" BorderThickness="5" BorderBrush="Gray" CornerRadius="12">
+                    <StackPanel>
+                        <StackPanel x:Name="SearchInformatioPanelCustomer" Visibility="Collapsed">
+                            <Image Source="\Images\search.png" Width="150"/>
+                            <TextBlock FontSize="25" Margin="25" FontFamily="Forte Regular" Foreground="#d24e01 " HorizontalAlignment="Center">{ Enter BOX ID  Please }</TextBlock>
+                            <TextBox Margin="0,0,0,25" Name="txtIdSearchCustomer" Width="500" Background="Transparent" BorderThickness="3" BorderBrush="DarkGray">
+                            </TextBox>
+
+                            <Button x:Name="btnBoxSearchCustomer" Click="btnBoxSearchCustomer_Click" Width="100" Height="50" Content="Search" FontSize="15" FontFamily="Lucida Handwriting Italic" Background="Gray">
+
+                            </Button>
+                        </StackPanel>
+
+                        <StackPanel x:Name="MainBoxInformationPanelCustomer" Visibility="Collapsed">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Sender's SSN:</TextBlock>
+                                <Label Name="LableSSNCustomer" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Margin="15" Content="---"></Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Sender Address:</TextBlock>
+                                <Label Name="LableSenderAddressCustomer" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Margin="15" Content="---"></Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Receiver Addreess:</TextBlock>
+                                <Label Name="LableReceiverAddressCustomer" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Margin="15" Content="---"></Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Package Content:</TextBlock>
+                                <Label Name="LablePackgeContentCustomer" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Margin="15" Content="---"></Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Valuble Item:</TextBlock>
+                                <Label Name="LableValubleItemCustomer" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Margin="15" Content="---"></Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Shipment Type::</TextBlock>
+                                <Label Name="LableShipmentTypeCustomer" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Margin="15" Content="---"></Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Phone Number:</TextBlock>
+                                <Label Name="LablePhoneNumberCustomer" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Margin="15" Content="---"></Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Weight:</TextBlock>
+                                <Label Name="LableWeightCustomer" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Margin="15" Content="---"></Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Total Price:</TextBlock>
+                                <Label Name="LableTotalPriceCustomer" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Margin="15" Content="---"></Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Package ID:</TextBlock>
+                                <Label Name="LablePackageIdCustomer" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Margin="15" Content="---"></Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Box Status:</TextBlock>
+                                <ComboBox Name="ComboStatusBoxCustomer" Width="500" Height="35">
+                                    <ComboBoxItem>Registered</ComboBoxItem>
+                                    <ComboBoxItem>Ready To Send</ComboBoxItem>
+                                    <ComboBoxItem>Sending</ComboBoxItem>
+                                    <ComboBoxItem>Deliverd</ComboBoxItem>
+                                </ComboBox>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Customer Opinion:</TextBlock>
+                                <Button Margin="125,0,0,0" x:Name="btnSubmit" Click="btnSubmit_Click" Content="Submit" Width="120" Height="50" FontSize="15" FontFamily="Lucida Handwriting Italic" Foreground="Black"  Background="DarkGray"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel x:Name="CustomerOpinionStackPanel" Visibility="Visible">
+                            <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Customer Opinion:</TextBlock>
+                            <TextBox Margin="0,0,0,25" Name="txtCustomerId" Width="500" Background="Transparent" BorderThickness="3" BorderBrush="DarkGray">
+                            </TextBox>
+                            <Button Margin="0,25" x:Name="btnBackCustumerOpinion" Click="btnBackCustumerOpinion_Click" Content="Back" Width="120" Height="50" FontSize="15" FontFamily="Lucida Handwriting Italic" Foreground="Black"  Background="DarkGray"/>
+                        </StackPanel>
+                    </StackPanel>
                 </Border>
                 
             </Grid>

@@ -72,5 +72,22 @@ namespace WpfPostManagement.View
         {
 
         }
+
+        private void btnBoxSearchCustomer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnSubmit_Click(object sender, RoutedEventArgs e)
+        {
+            CustomerOpinionStackPanel.Visibility = Visibility.Visible;
+            MainBoxInformationPanelCustomer.Visibility = Visibility.Collapsed;
+        }
+
+        private void btnBackCustumerOpinion_Click(object sender, RoutedEventArgs e)
+        {
+            CustomerOpinionStackPanel.Visibility = Visibility.Collapsed;
+            MainBoxInformationPanelCustomer.Visibility = Visibility.Visible;
+        }
     }
 }

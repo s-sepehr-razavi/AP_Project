@@ -275,7 +275,7 @@
                     </StackPanel>
                 </Border>
 
-                <Border Name="BoxInformationPanel" Grid.Column="1" Visibility="Collapsed" Margin="0,2,0,2" Background="Transparent" Width="716" HorizontalAlignment="Center" BorderThickness="5" BorderBrush="Gray" CornerRadius="12">
+                <Border Name="BoxInformationPanel" Grid.Column="1" Visibility="Visible" Margin="0,2,0,2" Background="Transparent" Width="716" HorizontalAlignment="Center" BorderThickness="5" BorderBrush="Gray" CornerRadius="12">
                     <StackPanel>
                         <StackPanel x:Name="SearchInformatioPanel" Visibility="Collapsed">
                             <Image Source="\Images\search.png" Width="150"/>
@@ -328,6 +328,8 @@
                                 <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Package ID:</TextBlock>
                                 <Label Name="LablePackageId" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Margin="15" Content="---"></Label>
                             </StackPanel>
+                            
+                            
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Box Status:</TextBlock>
                                 <ComboBox Name="ComboStatusBox" Width="500" Height="35">
@@ -336,6 +338,11 @@
                                     <ComboBoxItem>Sending</ComboBoxItem>
                                     <ComboBoxItem>Deliverd</ComboBoxItem>
                                 </ComboBox>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Customer Opinion:</TextBlock>
+                                <Label Name="LableCustumerOpinion" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Margin="15" Content="---"></Label>
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>
