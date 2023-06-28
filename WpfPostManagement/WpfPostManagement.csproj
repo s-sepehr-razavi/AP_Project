@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\a.png" />
+    <None Remove="Images\BackGround.jpg" />
+    <None Remove="Images\BackGround.png" />
+    <None Remove="Images\Customer Register.png" />
+    <None Remove="Images\EmployeePanel.png" />
+    <None Remove="Images\LoginLogo.png" />
+    <None Remove="Images\Logo.png" />
+    <None Remove="Images\Order.png" />
+    <None Remove="Images\Register2.png" />
+    <None Remove="Images\search.png" />
+    <None Remove="Images\UserIcon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\Customer Register.png" />
+    <Resource Include="Images\EmployeePanel.png" />
+    <Resource Include="Images\Order.png" />
+    <Resource Include="Images\Register2.png" />
+    <Resource Include="Images\search.png" />
+    <Resource Include="Images\UserIcon.png" />
+    <Resource Include="Images\BackGround.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ViewModel\" />
+  </ItemGroup>
+
+</Project>

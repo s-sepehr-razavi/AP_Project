@@ -1,0 +1,349 @@
+﻿<Window x:Class="WpfPostManagement.View.EmployeePanel"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfPostManagement.View"
+        mc:Ignorable="d"
+        Title="EmployeePanel" Height="800" Width="1000"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        MouseDown="Window_MouseDown">
+    <Border CornerRadius="25"
+            BorderThickness="5">
+
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#868F96" Offset="0" />
+                <GradientStop Color="#596164" Offset="0.75" />
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color=" #537895" Offset="0" />
+                <GradientStop Color="#09203F" Offset="1" />
+            </LinearGradientBrush>
+        </Border.Background>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Employee Panel"
+                               Foreground="WhiteSmoke"
+                               FontSize="20"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               FontFamily="Times New Roman"
+                               />
+
+                <Button x:Name="btnMinimize" Background="Blue" BorderThickness="0" Content="-" Foreground="White" FontSize="16" FontFamily="Montserrat" Cursor="Hand" Grid.Column="1" Click="btnMinimize_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="Blue"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Blue"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="18" Height="18" CornerRadius="9" Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                </Button>
+                <Button x:Name="btnClose" Background="Red" BorderThickness="0" Content="X" Foreground="White" FontSize="12" FontFamily="Montserrat" Cursor="Hand" Grid.Column="2" Click="btnClose_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="Red"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Red"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="18" Height="18" CornerRadius="9" Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width ="auto"/>
+
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" Margin="2" Background="Transparent" Width="250" HorizontalAlignment="Center" BorderThickness="5" BorderBrush="Gray" CornerRadius="12">
+                    <StackPanel>
+                        <Image Source="\Images\EmployeePanel.png" Width="150"/>
+                        <Button Margin="20,20" Background="#3E454C" Height="50" Foreground="White" FontSize="15" Name = "btnRgesterCustomer" Click= "btnRgesterCustomer_Click" FontFamily="Lucida Handwriting Italic">Register Customer</Button>
+                        <Button Margin="20,20" Background="#3E454C" Height="50" Foreground="White" FontSize="15" Name = "btnOrder" Click= "btnOrder_Click" FontFamily="Lucida Handwriting Italic">Order</Button>
+                        <Button Margin="20,20" Background="#3E454C" Height="50" Foreground="White" FontSize="15" Name = "btnReport" Click= "btnReport_Click" FontFamily="Lucida Handwriting Italic">Report</Button>
+                        <Button Margin="20,20" Background="#3E454C" Height="50" Foreground="White" FontSize="15" Name = "btnInformation" Click= "btnInformation_Click" FontFamily="Lucida Handwriting Italic">Box Information</Button>
+                        <Button Margin="20,20" Background="#3E454C" Height="50" Foreground="White" FontSize="15" Name = "btnBack" Click= "btnBack_Click" FontFamily="Lucida Handwriting Italic">Back</Button>
+                    </StackPanel>
+                </Border>
+                
+                <Border Name="RegisterPanel" Grid.Column="1" Visibility="Collapsed" Margin="0,2,0,2" Background="Transparent" Width="716" HorizontalAlignment="Center" BorderThickness="5" BorderBrush="Gray" CornerRadius="12">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="\Images\Customer Register.png" Width="300"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="100">Name: </TextBlock>
+                            <TextBox Name="txtCustomerName" Background="Transparent" Width="500" Height="35" BorderBrush="#3E454C" BorderThickness="5" FontSize="14" FontFamily="New Times Roman" ></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular"  Width="100">Last NAME:</TextBlock>
+                            <TextBox Name="txtCustomerLastName" Background="Transparent" Width="500" Height="35" BorderBrush="#3E454C" BorderThickness="5" FontSize="14" FontFamily="New Times Roman" ></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular"  Width="100">SSN:</TextBlock>
+                            <TextBox Name="txtCustomerSSN" Background="Transparent" Width="500" Height="35" BorderBrush="#3E454C" BorderThickness="5" FontSize="14" FontFamily="New Times Roman" ></TextBox>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular"  Width="100">Email:</TextBlock>
+                            <TextBox Name="txtCustomerEmail" Background="Transparent" Width="500" Height="35" BorderBrush="#3E454C" BorderThickness="5" FontSize="14" FontFamily="New Times Roman" ></TextBox>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular"  Width="100">Phone:</TextBlock>
+                            <TextBox Name="txtCustomerPhoneNUMBER" Background="Transparent" Width="500" Height="35" BorderBrush="#3E454C" BorderThickness="5" FontSize="14" FontFamily="New Times Roman" ></TextBox>
+                        </StackPanel>
+
+                        <Button x:Name="btnSubmit" Width="80" Height="50" VerticalAlignment="Bottom" Margin="0,0,0,50" Content="Submit"  Click="btnSubmit_Click"  FontFamily="Montserrat" Cursor="Hand" Foreground="Black" Grid.Column="2">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="DarkGray"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="MistyRose"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Width="80" Height="40" CornerRadius="20" Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                    </StackPanel>
+                </Border>
+
+                <Border Name="OrderPanel" Grid.Column="1" Visibility="Collapsed" Margin="0,2,0,2" Background="Transparent" Width="716" HorizontalAlignment="Center" BorderThickness="5" BorderBrush="Gray" CornerRadius="12">
+                    <StackPanel>
+                        <StackPanel x:Name="SerchSSNPanel" Visibility="Collapsed">
+                            <Image Source="/Images/search.png" Width="200"/>
+                            <TextBlock FontSize="25" Margin="25" FontFamily="Forte Regular" Foreground="#d24e01 " HorizontalAlignment="Center">{ Enter SSN  Please }</TextBlock>
+                            <TextBox Margin="0,0,0,25" Name="txtSSNsearch" Width="500" Background="Transparent" BorderThickness="3" BorderBrush="DarkGray">
+                            </TextBox>
+
+                            <Button x:Name="btnSsnSearch" Click="btnSsnSearch_Click" Width="100" Height="50" Content="Search" FontSize="15" FontFamily="Lucida Handwriting Italic" Background="Gray">
+
+                            </Button>
+                        </StackPanel>
+
+                        <StackPanel x:Name="MainSSNPanel" Visibility="Visible" Orientation="Vertical">
+                            <Image Source="/Images/Order.png" Width="150"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Sender Address:</TextBlock>
+                                <TextBox Name="txtSenderAddress" Background="Transparent" Width="500" Height="35" BorderBrush="#3E454C" BorderThickness="5" FontSize="14" FontFamily="New Times Roman" ></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Receiver Address:</TextBlock>
+                                <TextBox Name="txtReceiverAddress" Background="Transparent" Width="500" Height="35" BorderBrush="#3E454C" BorderThickness="5" FontSize="14" FontFamily="New Times Roman" ></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Package Content:</TextBlock>
+                                <ComboBox Width="500" Height="35" Name="ComboPackageContent">
+                                    <ComboBoxItem>Object</ComboBoxItem>
+                                    <ComboBoxItem>Document</ComboBoxItem>
+                                    <ComboBoxItem>Fragile</ComboBoxItem>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="auto">Is your package containing valuable items?</TextBlock>
+                                <ComboBox Name="ComboValubleBox" Width="100" Height="35">
+                                    <ComboBoxItem>Yes</ComboBoxItem>
+                                    <ComboBoxItem>No</ComboBoxItem>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Shipment Type:</TextBlock>
+                                <ComboBox Name="ComboShipment" Width="500" Height="35">
+                                    <ComboBoxItem>Regular</ComboBoxItem>
+                                    <ComboBoxItem>Express</ComboBoxItem>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Phone Number:</TextBlock>
+                                <TextBox Name="txtPhonenUMBER" Background="Transparent" Width="500" Height="35" BorderBrush="#3E454C" BorderThickness="5" FontSize="14" FontFamily="New Times Roman" ></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Weight:</TextBlock>
+                                <TextBox Name="txtWeight" Background="Transparent" Width="500" Height="35" BorderBrush="#3E454C" BorderThickness="5" FontSize="14" FontFamily="New Times Roman" ></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Total Price :</TextBlock>
+                                <Button Margin="90,0,0,0" x:Name="btnShowPrice" Click="btnShowPrice_Click"  Width="120" Height="50" Content="Show price" FontSize="15" FontFamily="Lucida Handwriting Italic" Foreground="WhiteSmoke"  Background="#3E454C">
+
+                                </Button>
+                            </StackPanel>
+                            <Button Margin="0,20,0,0" x:Name="btnOrderSubmit" Click="btnOrderSubmit_Click" Width="100" Height="50" Content="ok" FontSize="15" FontFamily="Lucida Handwriting Italic" Background="Gray">
+
+                            </Button>
+                        </StackPanel>
+
+                        <StackPanel x:Name="ShowPricePanel" Visibility="Collapsed">
+                           
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">ShowPrice:</TextBlock>
+                                <Label Name="LableShowPrice" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Margin="15" Content="---" HorizontalAlignment="Center"></Label>
+                                <Button x:Name="btnBackShowPrice" Click="btnBackShowPrice_Click" Width="100" Height="50" Content="Back" FontSize="15" FontFamily="Lucida Handwriting Italic" Background="Gray">
+
+                                 </Button>
+                        </StackPanel>
+                        
+                    </StackPanel>
+                </Border>
+
+                <Border Name="ReportPanel" Grid.Column="1" Visibility="Collapsed" Margin="0,2,0,2" Background="Transparent" Width="716" HorizontalAlignment="Center" BorderThickness="5" BorderBrush="Gray" CornerRadius="12">
+                    <StackPanel Visibility="Visible">
+                        <Image Source="\Images\search.png" Width="150"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">SSN:</TextBlock>
+                            <TextBox Name="txtSearchBaseSSN" Background="Transparent" Width="500" Height="35" BorderBrush="#3E454C" BorderThickness="5" FontSize="14" FontFamily="New Times Roman" ></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Package Content:</TextBlock>
+                            <ComboBox Width="500" Height="35" Name="CombSearchBasePackageContent">
+                                <ComboBoxItem>Object</ComboBoxItem>
+                                <ComboBoxItem>Document</ComboBoxItem>
+                                <ComboBoxItem>Fragile</ComboBoxItem>
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Price:</TextBlock>
+                            <TextBox Name="txtSearchBasePrice" Background="Transparent" Width="500" Height="35" BorderBrush="#3E454C" BorderThickness="5" FontSize="14" FontFamily="New Times Roman" ></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Shipment Type:</TextBlock>
+                            <ComboBox Name="ComboSearchBaseShipment" Width="500" Height="35">
+                                <ComboBoxItem>Regular</ComboBoxItem>
+                                <ComboBoxItem>Express</ComboBoxItem>
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Weight:</TextBlock>
+                            <TextBox Name="txtSearchBaseWeight" Background="Transparent" Width="500" Height="35" BorderBrush="#3E454C" BorderThickness="5" FontSize="14" FontFamily="New Times Roman" ></TextBox>
+                        </StackPanel>
+                        <Button Margin="0,25,0,0" x:Name="BtnSearchRepot" Click="btnShowPrice_Click"  Width="120" Height="50" Content="Search" FontSize="15" FontFamily="Lucida Handwriting Italic" Foreground="Black"  Background="DarkGray">
+
+                        </Button>
+                    </StackPanel>
+                </Border>
+
+                <Border Name="BoxInformationPanel" Grid.Column="1" Visibility="Collapsed" Margin="0,2,0,2" Background="Transparent" Width="716" HorizontalAlignment="Center" BorderThickness="5" BorderBrush="Gray" CornerRadius="12">
+                    <StackPanel>
+                        <StackPanel x:Name="SearchInformatioPanel" Visibility="Collapsed">
+                            <Image Source="\Images\search.png" Width="150"/>
+                            <TextBlock FontSize="25" Margin="25" FontFamily="Forte Regular" Foreground="#d24e01 " HorizontalAlignment="Center">{ Enter BOX ID  Please }</TextBlock>
+                            <TextBox Margin="0,0,0,25" Name="txtIdSearch" Width="500" Background="Transparent" BorderThickness="3" BorderBrush="DarkGray">
+                            </TextBox>
+
+                            <Button x:Name="btnBoxSearch" Click="btnSsnSearch_Click" Width="100" Height="50" Content="Search" FontSize="15" FontFamily="Lucida Handwriting Italic" Background="Gray">
+
+                            </Button>
+                        </StackPanel>
+                        <StackPanel x:Name="MainBoxInformationPanel" Visibility="Visible">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Sender's SSN:</TextBlock>
+                                <Label Name="LableSSN" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Margin="15" Content="---"></Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Sender Address:</TextBlock>
+                                <Label Name="LableSenderAddress" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Margin="15" Content="---"></Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Receiver Addreess:</TextBlock>
+                                <Label Name="LableReceiverAddress" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Margin="15" Content="---"></Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Package Content:</TextBlock>
+                                <Label Name="LablePackgeContent" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Margin="15" Content="---"></Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Valuble Item:</TextBlock>
+                                <Label Name="LableValubleItem" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Margin="15" Content="---"></Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Shipment Type::</TextBlock>
+                                <Label Name="LableShipmentType" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Margin="15" Content="---"></Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Phone Number:</TextBlock>
+                                <Label Name="LablePhoneNumber" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Margin="15" Content="---"></Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Weight:</TextBlock>
+                                <Label Name="LableWeight" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Margin="15" Content="---"></Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Total Price:</TextBlock>
+                                <Label Name="LableTotalPrice" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Margin="15" Content="---"></Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Package ID:</TextBlock>
+                                <Label Name="LablePackageId" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Margin="15" Content="---"></Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Box Status:</TextBlock>
+                                <ComboBox Name="ComboStatusBox" Width="500" Height="35">
+                                    <ComboBoxItem>Registered</ComboBoxItem>
+                                    <ComboBoxItem>Ready To Send</ComboBoxItem>
+                                    <ComboBoxItem>Sending</ComboBoxItem>
+                                    <ComboBoxItem>Deliverd</ComboBoxItem>
+                                </ComboBox>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+                
+            </Grid>
+
+        </Grid>
+
+    </Border>
+</Window>

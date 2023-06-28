@@ -1,0 +1,200 @@
+﻿<Window x:Class="WpfPostManagement.View.RegisterEmployees"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfPostManagement.View"
+        mc:Ignorable="d"
+        Title="RegisterEmployees" Height="500" Width="700"
+          WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        MouseDown="Window_MouseDown">
+    <Border CornerRadius="50"
+            BorderThickness="5">
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#EE9CA7 " Offset="0" />
+                <GradientStop Color=" #516395" Offset="0.75"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#516395" Offset="0" />
+                <GradientStop Color="#EE9CA7" Offset="1" />
+            </LinearGradientBrush>
+        </Border.Background>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Emplyees Register Page"
+                               Foreground="LightGray"
+                               FontSize="20"
+                               Grid.Column="0"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left"
+                               FontFamily="Times New Roman" Margin="248,0,0,0"
+                               />
+
+                <Button x:Name="btnMinimize" Background="Blue" BorderThickness="0" Content="-" Foreground="White" FontSize="16" FontFamily="Montserrat" Cursor="Hand" Grid.Column="1" Click="btnMinimize_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="Blue"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Blue"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="18" Height="18" CornerRadius="9" Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                </Button>
+                <Button x:Name="btnClose" Background="Red" BorderThickness="0" Content="X" Foreground="White" FontSize="12" FontFamily="Montserrat" Cursor="Hand" Grid.Column="2" Click="btnClose_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="Red"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Red"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="18" Height="18" CornerRadius="9" Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="500"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="btnBack" Width="80" Height="50" VerticalAlignment="Bottom" Margin="0,0,0,50" Content="Back"  Click="btnBack_Click"  FontFamily="Montserrat" Cursor="Hand" Foreground="Black">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="Green"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Red"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="80" Height="40" CornerRadius="20" Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <StackPanel Grid.Column="1" Width="250" >
+                    <Image Source="/images/Register2.png" Width="120" Margin="0,25"></Image>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" Grid.Row="0">
+                            <TextBlock Background="Transparent" Margin="0,20,5,0" FontSize="15" FontFamily="Colonna MT Regular" Width="80">Name:</TextBlock>
+                            <TextBox x:Name="txtEmployeeName" FontSize="13" FontWeight="Medium" FontFamily="Times New Roman" Background="Transparent" Foreground="black" CaretBrush="LightGray" BorderBrush="DarkGray" BorderThickness="0,0,0,2" Height="28" VerticalContentAlignment="Center" Margin="0,5,0,2" Width="150">
+                            </TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1">
+                            <TextBlock Background="Transparent" Margin="0,20,5,0" FontSize="15" FontFamily="Colonna MT Regular" Width="80">Last Name:</TextBlock>
+                            <TextBox x:Name="txtLastName" FontSize="13" FontWeight="Medium" FontFamily="Times New Roman" Background="Transparent" Foreground="black" CaretBrush="LightGray" BorderBrush="DarkGray" BorderThickness="0,0,0,2" Height="28" VerticalContentAlignment="Center" Margin="0,5,0,2" Width="150">
+                            </TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="2">
+                            <TextBlock Background="Transparent" Margin="0,20,5,0" FontSize="15" FontFamily="Colonna MT Regular" Width="80">ID:</TextBlock>
+                            <TextBox x:Name="txtid" FontSize="13" FontWeight="Medium" FontFamily="Times New Roman" Background="Transparent" Foreground="black" CaretBrush="LightGray" BorderBrush="DarkGray" BorderThickness="0,0,0,2" Height="28" VerticalContentAlignment="Center" Margin="0,5,0,2" Width="150">
+                            </TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="3">
+                            <TextBlock Background="Transparent" Margin="0,20,5,0" FontSize="15" FontFamily="Colonna MT Regular" Width="80">Username:</TextBlock>
+                            <TextBox x:Name="txtUsername" FontSize="13" FontWeight="Medium" FontFamily="Times New Roman" Background="Transparent" Foreground="black" CaretBrush="LightGray" BorderBrush="DarkGray" BorderThickness="0,0,0,2" Height="28" VerticalContentAlignment="Center" Margin="0,5,0,2" Width="150">
+                            </TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="4">
+                            <TextBlock Background="Transparent" Margin="0,20,5,0" FontSize="15" FontFamily="Colonna MT Regular" Width="80">Email:</TextBlock>
+                            <TextBox x:Name="txtEmail" FontSize="13" FontWeight="Medium" FontFamily="Times New Roman" Background="Transparent" Foreground="black" CaretBrush="LightGray" BorderBrush="DarkGray" BorderThickness="0,0,0,2" Height="28" VerticalContentAlignment="Center" Margin="0,5,0,2" Width="150">
+                            </TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="5">
+                            <TextBlock Background="Transparent" Margin="0,20,5,0" FontSize="15" FontFamily="Colonna MT Regular" Width="80">PassWord:</TextBlock>
+                            <TextBox x:Name="txtPass" FontSize="13" FontWeight="Medium" FontFamily="Times New Roman" Background="Transparent" Foreground="black" CaretBrush="LightGray" BorderBrush="DarkGray" BorderThickness="0,0,0,2" Height="28" VerticalContentAlignment="Center" Margin="0,5,0,2" Width="150">
+                            </TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="6">
+                            <TextBlock Background="Transparent" Margin="0,20,5,0" FontSize="15" FontFamily="Colonna MT Regular" Width="80">RepeatPass:</TextBlock>
+                            <TextBox x:Name="txtRePass" FontSize="13" FontWeight="Medium" FontFamily="Times New Roman" Background="Transparent" Foreground="black" CaretBrush="LightGray" BorderBrush="DarkGray" BorderThickness="0,0,0,2" Height="28" VerticalContentAlignment="Center" Margin="0,5,0,2" Width="150">
+                            </TextBox>
+                        </StackPanel>
+                    </Grid>
+                    
+                   
+                   
+                </StackPanel>
+                <Button x:Name="btnSubmit" Width="80" Height="50" VerticalAlignment="Bottom" Margin="0,0,0,50" Content="Submit"  Click="btnSubmit_Click"  FontFamily="Montserrat" Cursor="Hand" Foreground="Black" Grid.Column="2">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="DarkGray"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="MistyRose"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="80" Height="40" CornerRadius="20" Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+        </Grid>
+
+    </Border>
+</Window>
