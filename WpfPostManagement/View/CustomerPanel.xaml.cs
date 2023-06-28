@@ -67,5 +67,10 @@ namespace WpfPostManagement.View
             Test.Show();
             this.Close();
         }
+
+        private void BtnSearchRepotCustomer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
