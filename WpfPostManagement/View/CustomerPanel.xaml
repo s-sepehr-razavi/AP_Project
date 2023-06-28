@@ -147,7 +147,7 @@
                     </StackPanel>
                 </Border>
 
-                <Border Name="BoxInformationPanelCustomer" Grid.Column="1" Visibility="Visible" Margin="0,2,0,2" Background="Transparent" Width="716" HorizontalAlignment="Center" BorderThickness="5" BorderBrush="Gray" CornerRadius="12">
+                <Border Name="BoxInformationPanelCustomer" Grid.Column="1" Visibility="Collapsed" Margin="0,2,0,2" Background="Transparent" Width="716" HorizontalAlignment="Center" BorderThickness="5" BorderBrush="Gray" CornerRadius="12">
                     <StackPanel>
                         <StackPanel x:Name="SearchInformatioPanelCustomer" Visibility="Collapsed">
                             <Image Source="\Images\search.png" Width="150"/>
@@ -224,6 +224,61 @@
                             <Button Margin="0,25" x:Name="btnBackCustumerOpinion" Click="btnBackCustumerOpinion_Click" Content="Back" Width="120" Height="50" FontSize="15" FontFamily="Lucida Handwriting Italic" Foreground="Black"  Background="DarkGray"/>
                         </StackPanel>
                     </StackPanel>
+                </Border>
+
+                <Border Name="WalletPanel" Grid.Column="1" Visibility="Visible" Margin="0,2,0,2" Background="Transparent" Width="716" HorizontalAlignment="Center" BorderThickness="5" BorderBrush="Gray" CornerRadius="12">
+                    <StackPanel>
+                        <StackPanel Name="MainWalletPanel" Orientation="Vertical" Visibility="Collapsed">
+                            <Image Source="\Images\Wallet.png" Width="200"/>
+                            <TextBlock FontSize="25" Margin="25" FontFamily="Forte Regular" Foreground="#d24e01 " HorizontalAlignment="Center">{ Account balance }</TextBlock>
+                            <Label Name="AccountBalance" FontSize="25" Margin="25" FontFamily="Forte Regular" Content="0" HorizontalAlignment="Center" Foreground="Red"></Label>
+                            <Button x:Name="btnChargeAccount" Click="btnChargeAccount_Click" Width="100" Height="50" Content="Charge" FontSize="15" FontFamily="Lucida Handwriting Italic" Background="Gray">
+                            </Button>
+                        </StackPanel>
+
+                        <StackPanel x:Name="ChargePanel" Visibility="Visible">
+                            <Image Source="\Images\Money.png" Width="300"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="100">Card Number:</TextBlock>
+                                <TextBox Name="txtCardNumber" Background="Transparent" Width="500" Height="35" BorderBrush="#3E454C" BorderThickness="5" FontSize="14" FontFamily="New Times Roman" ></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="100">CCV2:</TextBlock>
+                                <TextBox Name="txtCVV2" Background="Transparent" Width="500" Height="35" BorderBrush="#3E454C" BorderThickness="5" FontSize="14" FontFamily="New Times Roman" ></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="175,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="40">Year:</TextBlock>
+                                <TextBox Name="txtYear" Background="Transparent" Width="75" Height="35" BorderBrush="#3E454C" BorderThickness="5" FontSize="14" FontFamily="New Times Roman" ></TextBox>
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="auto">Month:</TextBlock>
+                                <TextBox Name="txtMonth" Background="Transparent" Width="75" Height="35" BorderBrush="#3E454C" BorderThickness="5" FontSize="14" FontFamily="New Times Roman" ></TextBox>
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="auto">Day:</TextBlock>
+                                <TextBox Name="txtDay" Background="Transparent" Width="75" Height="35" BorderBrush="#3E454C" BorderThickness="5" FontSize="14" FontFamily="New Times Roman" ></TextBox>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="100">Amount:</TextBlock>
+                                <TextBox Name="txtAmountOfMoney" Background="Transparent" Width="500" Height="35" BorderBrush="#3E454C" BorderThickness="5" FontSize="14" FontFamily="New Times Roman" ></TextBox>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="auto">DO you want recipt?</TextBlock>
+                                <ComboBox Width="75" Height="25">
+                                    <ComboBoxItem>
+                                        Yes
+                                    </ComboBoxItem>
+                                    <ComboBoxItem>
+                                        No
+                                    </ComboBoxItem>
+                                </ComboBox>
+                            </StackPanel>
+
+                            <Button Margin="25" x:Name="btnOkCard" Click="btnChargeAccount_Click" Width="100" Height="50" Content="Ok" FontSize="15" FontFamily="Lucida Handwriting Italic" Background="Gray">
+                            </Button>
+                        </StackPanel>
+                        
+                    </StackPanel>
+
+
                 </Border>
                 
             </Grid>

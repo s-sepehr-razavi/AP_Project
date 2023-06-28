@@ -275,7 +275,7 @@
                     </StackPanel>
                 </Border>
 
-                <Border Name="BoxInformationPanel" Grid.Column="1" Visibility="Visible" Margin="0,2,0,2" Background="Transparent" Width="716" HorizontalAlignment="Center" BorderThickness="5" BorderBrush="Gray" CornerRadius="12">
+                <Border Name="BoxInformationPanel" Grid.Column="1" Visibility="Collapsed" Margin="0,2,0,2" Background="Transparent" Width="716" HorizontalAlignment="Center" BorderThickness="5" BorderBrush="Gray" CornerRadius="12">
                     <StackPanel>
                         <StackPanel x:Name="SearchInformatioPanel" Visibility="Collapsed">
                             <Image Source="\Images\search.png" Width="150"/>

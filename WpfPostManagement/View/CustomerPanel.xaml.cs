@@ -89,5 +89,10 @@ namespace WpfPostManagement.View
             CustomerOpinionStackPanel.Visibility = Visibility.Collapsed;
             MainBoxInformationPanelCustomer.Visibility = Visibility.Visible;
         }
+
+        private void btnChargeAccount_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
