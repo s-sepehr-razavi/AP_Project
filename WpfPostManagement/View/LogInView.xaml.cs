@@ -83,7 +83,7 @@ namespace WpfPostManagement.View
                 if (employee.password == txtPassword.Password)
                 {
                     //Employee Panel
-                    EmployeePanel employeePanel = new EmployeePanel();
+                    EmployeePanel employeePanel = new EmployeePanel(employee);
                     employeePanel.Show();
                     this.Close();
                 }

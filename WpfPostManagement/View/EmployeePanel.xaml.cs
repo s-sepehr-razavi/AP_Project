@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataAccess;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,8 +20,10 @@ namespace WpfPostManagement.View
     /// </summary>
     public partial class EmployeePanel : Window
     {
-        public EmployeePanel()
+        Employee employee;
+        public EmployeePanel(Employee emp)
         {
+            this.employee = emp;
             InitializeComponent();
         }
 
