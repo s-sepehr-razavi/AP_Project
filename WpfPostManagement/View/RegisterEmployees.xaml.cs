@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataAccess;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -50,7 +51,17 @@ namespace WpfPostManagement.View
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-
+            if (txtPass.Text == txtRePass.Text)
+            {
+                Employee Register = new Employee(txtEmployeeName.Text,txtLastName.Text,txtid.Text,txtUsername.Text,txtEmail.Text,txtPass.Text);
+                LogInView Test = new LogInView();
+                Test.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Passwords do not match.");
+            }
         }
     }
 }

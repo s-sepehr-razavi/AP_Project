@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess
 {
-    class Customer
+    public class Customer
     {
         public string name { set; get; }
         public string id { set; get; }
@@ -14,7 +14,7 @@ namespace DataAccess
         public string email { get; set; }
         public string password { get; set; }
         public string phonenumber { get;set; }
-        static public List<Customer> customers { get; set; } = new List<Customer>();
+        public static  List<Customer> customers { get; set; } = new List<Customer>();
 
         public Customer(string name, string email, string id, string phonenumber)
         {

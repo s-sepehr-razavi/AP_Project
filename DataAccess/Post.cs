@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess
 {
-    class Post
+    public class Post
     {
         public string recieverAddress {  get; set; }
         public string senderAddress { get; set; }
@@ -133,7 +133,7 @@ namespace DataAccess
 
     }
 
-    enum Content
+    public enum Content
     {
         Object,
         Document,
