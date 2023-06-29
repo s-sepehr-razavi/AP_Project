@@ -1,12 +1,15 @@
-﻿using System;
+﻿using CsvHelper;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DataAccess
 {
-    class Post
+    public class Post
     {
         public string recieverAddress {  get; set; }
         public string senderAddress { get; set; }
@@ -60,8 +63,12 @@ namespace DataAccess
             return price * Math.Pow(1.2,(int)((int)(weight - 0.5) / 0.5));
         }
 
-        static public List<Post> searchByPrice(double min, double max)
+        static public List<Post> searchByPrice(double min, double max, List<Post> posts = null)
         {
+            if (posts == null)
+            {
+                posts = Post.posts;
+            }
             List<Post> result = new List<Post>();
             foreach (var item in posts)
             {
@@ -72,11 +79,17 @@ namespace DataAccess
                 }
             }
 
+            
             return result;
         }
 
-        static public List<Post> searchByID(string id)
+        static public List<Post> searchByID(string id, List<Post> posts = null)
         {
+            if (posts == null)
+            {
+                posts = Post.posts;
+            }
+
             List<Post> result = new List<Post>();
             foreach (var item in posts)
             {                
@@ -89,8 +102,14 @@ namespace DataAccess
             return result;
         }
 
-        static public List<Post> searchByWeight(double min, double max)
+        static public List<Post> searchByWeight(double min, double max, List<Post> posts = null)
         {
+
+            if (posts == null)
+            {
+                posts = Post.posts;
+            }
+
             List<Post> result = new List<Post>();
             foreach (var item in posts)
             {                
@@ -103,8 +122,14 @@ namespace DataAccess
             return result;
         }
 
-        static public List<Post> searchByPostType(bool exp)
+        static public List<Post> searchByPostType(bool exp, List<Post> posts = null)
         {
+
+            if (posts == null)
+            {
+                posts = Post.posts;
+            }
+
             List<Post> result = new List<Post>();
             foreach (var item in posts)
             {
@@ -117,8 +142,14 @@ namespace DataAccess
             return result;
         }
 
-        static public List<Post> searchByContent(Content content)
+        static public List<Post> searchByContent(Content content, List<Post> posts = null)
         {
+
+            if (posts == null)
+            {
+                posts = Post.posts;
+            }
+
             List<Post> result = new List<Post>();
             foreach (var item in posts)
             {
@@ -131,9 +162,11 @@ namespace DataAccess
             return result;
         }
 
+
+
     }
 
-    enum Content
+    public enum Content
     {
         Object,
         Document,

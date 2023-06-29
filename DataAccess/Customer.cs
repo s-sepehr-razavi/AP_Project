@@ -15,6 +15,7 @@ namespace DataAccess
         public string password { get; set; }
         public string phonenumber { get;set; }
         static public List<Customer> customers { get; set; } = new List<Customer>();
+        public List<Post> posts { get; set; } = new List<Post>();
 
         public Customer(string name, string email, string id, string phonenumber)
         {
@@ -26,7 +27,7 @@ namespace DataAccess
             Random random = new Random();
             while (true)
             {
-                int rand = random.Next(0);
+                int rand = random.Next(0) % 100000000;
                 bool flag = true;
                 foreach (var item in customers)
                 {
@@ -34,6 +35,7 @@ namespace DataAccess
                     {
                         flag = false; break;
                     }
+
                 }
 
                 if (flag)
@@ -45,19 +47,26 @@ namespace DataAccess
 
             while (true)
             {
-                int rand = random.Next(0);
+                int rand = random.Next(0) % 10000;
+                string r = rand.ToString();
+                for (int i = 0; i < 4 - r.Length; i++)
+                {
+                    r = 0 + r;
+                }
+
                 bool flag = true;
                 foreach (var item in customers)
                 {
-                    if (item.username == rand.ToString())
+                    if (item.username == r)
                     {
                         flag = false; break;
                     }
                 }
 
+
                 if (flag)
                 {
-                    username = rand.ToString();
+                    username = r;
                     break;
                 }
             }

@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfPostManagement", "WpfPos
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{8EB4E75C-1F2F-45AC-B737-35CC8D5978A4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility", "Utility\Utility.csproj", "{74127660-3660-41E6-8E57-7A2D17A3DCFD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{8EB4E75C-1F2F-45AC-B737-35CC8D5978A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EB4E75C-1F2F-45AC-B737-35CC8D5978A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EB4E75C-1F2F-45AC-B737-35CC8D5978A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74127660-3660-41E6-8E57-7A2D17A3DCFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74127660-3660-41E6-8E57-7A2D17A3DCFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74127660-3660-41E6-8E57-7A2D17A3DCFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74127660-3660-41E6-8E57-7A2D17A3DCFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
