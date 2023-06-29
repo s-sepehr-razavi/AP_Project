@@ -10,15 +10,17 @@ using DataAccess;
 using System.Net.Mail;
 using System.Net;
 using System.Xml.Linq;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 
 namespace Utility
 {
     public static class Function
     {
 
-        static public void employeeReport(List<Post> result)
+        static public void employeeReport(List<Post> result, string name)
         {
-            string filePath = "employeeReport.csv";
+            string filePath = name + "EmployeeReport.csv";
 
             using (var writer = new StreamWriter(filePath))
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
@@ -29,7 +31,7 @@ namespace Utility
 
         static public void customerReport(List<Post> result, string name)
         {
-            string filePath = name + "Report.csv";
+            string filePath = name + "CustomerReport.csv";
 
             using (var writer = new StreamWriter(filePath))
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
@@ -66,9 +68,9 @@ namespace Utility
             }
         }
 
-        public static void printReceipt(string input, string filePath)
+        public static void printReceipt(string input, string name)
         {
-            using (FileStream fileStream = new FileStream(filePath, FileMode.Create))
+            using (FileStream fileStream = new FileStream(name + "Receipt.pdf", FileMode.Create))
             {
                 Document document = new Document();
                 PdfWriter writer = PdfWriter.GetInstance(document, fileStream);
