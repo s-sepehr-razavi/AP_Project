@@ -165,7 +165,7 @@
 
                 <Border Name="OrderPanel" Grid.Column="1" Visibility="Collapsed" Margin="0,2,0,2" Background="Transparent" Width="716" HorizontalAlignment="Center" BorderThickness="5" BorderBrush="Gray" CornerRadius="12">
                     <StackPanel>
-                        <StackPanel x:Name="SerchSSNPanel" Visibility="Collapsed">
+                        <StackPanel x:Name="SerchSSNPanel" Visibility="Visible">
                             <Image Source="/Images/search.png" Width="200"/>
                             <TextBlock FontSize="25" Margin="25" FontFamily="Forte Regular" Foreground="#d24e01 " HorizontalAlignment="Center">{ Enter SSN  Please }</TextBlock>
                             <TextBox Margin="0,0,0,25" Name="txtSSNsearch" Width="500" Background="Transparent" BorderThickness="3" BorderBrush="DarkGray">
@@ -176,7 +176,7 @@
                             </Button>
                         </StackPanel>
 
-                        <StackPanel x:Name="MainSSNPanel" Visibility="Visible" Orientation="Vertical">
+                        <StackPanel x:Name="MainSSNPanel" Visibility="Collapsed" Orientation="Vertical">
                             <Image Source="/Images/Order.png" Width="150"/>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Sender Address:</TextBlock>
@@ -239,7 +239,7 @@
                     </StackPanel>
                 </Border>
 
-                <Border Name="ReportPanel" Grid.Column="1" Visibility="Collapsed" Margin="0,2,0,2" Background="Transparent" Width="716" HorizontalAlignment="Center" BorderThickness="5" BorderBrush="Gray" CornerRadius="12">
+                <Border Name="ReportPanel" Grid.Column="1" Visibility="Visible" Margin="0,2,0,2" Background="Transparent" Width="716" HorizontalAlignment="Center" BorderThickness="5" BorderBrush="Gray" CornerRadius="12">
                     <StackPanel Visibility="Visible">
                         <Image Source="\Images\search.png" Width="150"/>
                         <StackPanel Orientation="Horizontal">
@@ -269,7 +269,7 @@
                             <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Weight:</TextBlock>
                             <TextBox Name="txtSearchBaseWeight" Background="Transparent" Width="500" Height="35" BorderBrush="#3E454C" BorderThickness="5" FontSize="14" FontFamily="New Times Roman" ></TextBox>
                         </StackPanel>
-                        <Button Margin="0,25,0,0" x:Name="BtnSearchRepot" Click="btnShowPrice_Click"  Width="120" Height="50" Content="Search" FontSize="15" FontFamily="Lucida Handwriting Italic" Foreground="Black"  Background="DarkGray">
+                        <Button Margin="0,25,0,0" x:Name="BtnSearchRepot" Click="BtnSearchRepot_Click"  Width="120" Height="50" Content="Search" FontSize="15" FontFamily="Lucida Handwriting Italic" Foreground="Black"  Background="DarkGray">
 
                         </Button>
                     </StackPanel>
@@ -328,6 +328,8 @@
                                 <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Package ID:</TextBlock>
                                 <Label Name="LablePackageId" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Margin="15" Content="---"></Label>
                             </StackPanel>
+                            
+                            
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Box Status:</TextBlock>
                                 <ComboBox Name="ComboStatusBox" Width="500" Height="35">
@@ -336,6 +338,11 @@
                                     <ComboBoxItem>Sending</ComboBoxItem>
                                     <ComboBoxItem>Deliverd</ComboBoxItem>
                                 </ComboBox>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Customer Opinion:</TextBlock>
+                                <Label Name="LableCustumerOpinion" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Margin="15" Content="---"></Label>
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>

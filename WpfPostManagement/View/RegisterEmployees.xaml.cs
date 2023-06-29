@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataAccess;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Utility;
 
 namespace WpfPostManagement.View
 {
@@ -41,6 +43,7 @@ namespace WpfPostManagement.View
             Application.Current.Shutdown();
         }
 
+        
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             LogInView Test = new LogInView();
@@ -50,7 +53,41 @@ namespace WpfPostManagement.View
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-
+            if (! Evaluator.checkName(txtEmployeeName.Text))
+            {
+                MessageBox.Show("Names must be at least 3 letters and at most 32 letters and only consist of letters Do not have characters or numbers.");
+            }
+            else if (!Evaluator.checkName(txtLastName.Text))
+            {
+                MessageBox.Show("Lastnames must be at least 3 letters and at most 32 letters and only consist of letters Do not have characters or numbers.");
+            }
+            else if (!Evaluator.checkEmployeeID(txtid.Text))
+            {
+                MessageBox.Show("The personnel code of the employee during registration should contain only 5 numbers and the third number should be 9.");
+            }
+            else if (! Evaluator.checkName(txtUsername.Text))
+            {
+                MessageBox.Show("Usernames must be at least 3 letters and at most 32 letters and only consist of letters Do not have characters or numbers.");
+            }
+            else if (!Evaluator.checkEmail(txtEmail.Text))
+            {
+                MessageBox.Show("The email must be in the format A@B.C, where A and B are at least 3 letters and maximum 32 letters each And C can be at least 2 letters and at most 3 letters.");
+            }
+            else if (!Evaluator.checkCustomerPassword(txtPass.Text))
+            {
+                MessageBox.Show("The password entered by the employee must be at least 8 and at most 32 characters.It should also contain at least one uppercase letter, one lowercase letter and one number.");
+            }
+            else if (txtPass.Text == txtRePass.Text)
+            {
+                Employee Register = new Employee(txtEmployeeName.Text,txtLastName.Text,txtid.Text,txtUsername.Text,txtEmail.Text,txtPass.Text);
+                LogInView Test = new LogInView();
+                Test.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Passwords do not match.");
+            }
         }
     }
 }

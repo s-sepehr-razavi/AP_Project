@@ -6,31 +6,41 @@ using System.Threading.Tasks;
 
 namespace DataAccess
 {
-    class Customer
+    public class Customer
     {
         public string name { set; get; }
+        public string lastName { set; get; }
         public string id { set; get; }
         public string username { get; set; }
         public string email { get; set; }
         public string password { get; set; }
         public string phonenumber { get;set; }
-        static public List<Customer> customers { get; set; } = new List<Customer>();
+        public static  List<Customer> customers { get; set; } = new List<Customer>();
 
-        public Customer(string name, string email, string id, string phonenumber)
+
+        public Customer(string name, string lastName ,string email, string id, string phonenumber)
         {
-            this.name = name;            
+            this.name = name;    
+            this.lastName = lastName;
             this.email = email;
             this.id = id;
             this.phonenumber = phonenumber;
 
+            
+
+            Random randomPass = new Random();
+            string password = randomPass.Next(10000000, 100000000).ToString();
+            this.password = password;
+
             Random random = new Random();
             while (true)
             {
-                int rand = random.Next(0);
+                int rand = random.Next(0,10000);
                 bool flag = true;
+
                 foreach (var item in customers)
                 {
-                    if (item.password == rand.ToString())
+                    if (item.username == "user" + rand.ToString())
                     {
                         flag = false; break;
                     }
@@ -38,26 +48,7 @@ namespace DataAccess
 
                 if (flag)
                 {
-                    password = rand.ToString();
-                    break;
-                }
-            }
-
-            while (true)
-            {
-                int rand = random.Next(0);
-                bool flag = true;
-                foreach (var item in customers)
-                {
-                    if (item.username == rand.ToString())
-                    {
-                        flag = false; break;
-                    }
-                }
-
-                if (flag)
-                {
-                    username = rand.ToString();
+                    this.username = "user" + rand.ToString();
                     break;
                 }
             }

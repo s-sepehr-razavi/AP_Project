@@ -12,23 +12,31 @@
     <None Remove="Images\BackGround.jpg" />
     <None Remove="Images\BackGround.png" />
     <None Remove="Images\Customer Register.png" />
+    <None Remove="Images\CustomerService.png" />
+    <None Remove="Images\CustomerService2.png" />
     <None Remove="Images\EmployeePanel.png" />
     <None Remove="Images\LoginLogo.png" />
     <None Remove="Images\Logo.png" />
+    <None Remove="Images\Money.png" />
     <None Remove="Images\Order.png" />
     <None Remove="Images\Register2.png" />
     <None Remove="Images\search.png" />
     <None Remove="Images\UserIcon.png" />
+    <None Remove="Images\Wallet.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Images\Customer Register.png" />
+    <Resource Include="Images\CustomerService.png" />
+    <Resource Include="Images\CustomerService2.png" />
     <Resource Include="Images\EmployeePanel.png" />
+    <Resource Include="Images\Money.png" />
     <Resource Include="Images\Order.png" />
     <Resource Include="Images\Register2.png" />
     <Resource Include="Images\search.png" />
     <Resource Include="Images\UserIcon.png" />
     <Resource Include="Images\BackGround.png" />
+    <Resource Include="Images\Wallet.png" />
   </ItemGroup>
 
   <ItemGroup>

@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using DataAccess;
+
 
 namespace WpfPostManagement.View
 {
@@ -19,6 +21,8 @@ namespace WpfPostManagement.View
     /// </summary>
     public partial class LogInView : Window
     {
+        Employee employee;
+        Customer customer;
         public LogInView()
         {
             InitializeComponent();
@@ -44,10 +48,69 @@ namespace WpfPostManagement.View
 
         private void btnLogIN_Click(object sender, RoutedEventArgs e)
         {
-            //Employee Login Page
-            EmployeePanel employeePanel = new EmployeePanel();
-            employeePanel.Show();
-            this.Close();
+            
+            //FindEmployee
+            bool EmployeeFlag = false;
+
+            for (int i=0; i<Employee.EmployeesList.Count; i++)
+            {
+                if (txtUser.Text == Employee.EmployeesList[i].username)
+                {
+                    EmployeeFlag = true;
+                    employee = Employee.EmployeesList[i];
+                    break;
+                }
+            }
+
+            
+            //FindCustomer
+            bool CustomerFlag = false;
+
+            for (int i = 0; i < Customer.customers.Count; i++)
+            {
+                if (txtUser.Text == Customer.customers[i].username)
+                {
+                    CustomerFlag = true;
+                    customer = Customer.customers[i];
+                    break;
+                }
+            }
+
+
+            //ShowWhichPanelOpen
+            if (EmployeeFlag)
+            {
+                if (employee.password == txtPassword.Password)
+                {
+                    //Employee Panel
+                    EmployeePanel employeePanel = new EmployeePanel(employee);
+                    employeePanel.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("The password is wrong.");
+                }
+            }
+            else if (CustomerFlag)
+            {
+                if (customer.password == txtPassword.Password)
+                {
+                    //Customer Panel
+                    CustomerPanel customerPanel = new CustomerPanel();
+                    customerPanel.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("The password is wrong.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("This username does not match any usernames.");
+            }
+            
         }
 
         private void btnRegisterEmployees_Click(object sender, RoutedEventArgs e)
