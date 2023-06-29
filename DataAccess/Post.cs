@@ -14,13 +14,15 @@ namespace DataAccess
         public bool expensive { get; set; }
         public double weight { get; set; }
         public string phonenumber { get; set; }
+        // True =  Express, False = Regular
         public bool express { get; set; }
         public int id { get; set; }
         public string senderID { get; set; }
+        public string SSN { get; set; }
+        public string price { get; set; }
+        public static List<Post> posts { get; set; } = new List<Post>();
 
-        static List<Post> posts { get; set; } = new List<Post>();
-
-        public Post(string recieverAddress, string senderAddress, Content content, bool expensive, double weight, string phonenumber, bool express, int id)
+        public Post(string recieverAddress, string senderAddress, Content content, bool expensive, double weight, string phonenumber, bool express, string sSN)
         {
             this.recieverAddress = recieverAddress;
             this.senderAddress = senderAddress;
@@ -31,6 +33,8 @@ namespace DataAccess
             this.express = express;
             posts.Add(this);
             this.id = posts.Count;
+            SSN = sSN;
+            this.price = calculatePrice().ToString();
         }
 
         public double calculatePrice()
@@ -56,8 +60,17 @@ namespace DataAccess
                 price *= 1.5;
             }
 
+            if (weight > 0.5)
+            {
+                int Coefficient = (int)(weight / 0.5);
+                if (weight % 0.5 == 0)
+                {
+                    Coefficient -= 1;
+                }
+                price *= Math.Pow(1.2, Coefficient);
+            }
 
-            return price * Math.Pow(1.2,(int)((int)(weight - 0.5) / 0.5));
+            return price;
         }
 
         static public List<Post> searchByPrice(double min, double max)
@@ -139,6 +152,5 @@ namespace DataAccess
         Document,
         Fragile
     }
-
     
 }

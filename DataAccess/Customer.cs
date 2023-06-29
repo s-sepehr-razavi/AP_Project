@@ -17,6 +17,7 @@ namespace DataAccess
         public string phonenumber { get;set; }
         public static  List<Customer> customers { get; set; } = new List<Customer>();
 
+
         public Customer(string name, string lastName ,string email, string id, string phonenumber)
         {
             this.name = name;    

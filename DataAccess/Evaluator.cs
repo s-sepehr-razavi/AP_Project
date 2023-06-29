@@ -46,6 +46,15 @@ namespace Utility
             return Regex.IsMatch(phonenumber, @"^09\d{9}$");
         }
 
+        public static bool checkPhonenumberOrder(this string phonenumber)
+        {
+            if (string.IsNullOrEmpty(phonenumber))
+            {
+                return true;
+            }
+            return Regex.IsMatch(phonenumber, @"^09\d{9}$");
+        }
+
         public static bool checkCustomerPassword(this string customerpassword)
         {
             return Regex.IsMatch(customerpassword, @"^(?=.*[a-z])(?=.*[A-Z]).{8,32}$");
