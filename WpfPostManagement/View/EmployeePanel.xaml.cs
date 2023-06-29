@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Utility;
 
 namespace WpfPostManagement.View
 {
@@ -86,7 +87,42 @@ namespace WpfPostManagement.View
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
+            if (!Evaluator.checkName(txtCustomerName.Text))
+            {
+                MessageBox.Show("Names must be at least 3 letters and at most 32 letters and only consist of letters Do not have characters or numbers.");
+            }
+            else if (!Evaluator.checkName(txtCustomerLastName.Text))
+            {
+                MessageBox.Show("Lastnames must be at least 3 letters and at most 32 letters and only consist of letters Do not have characters or numbers.");
+            }
+            else if (! Evaluator.checkSSN(txtCustomerSSN.Text))
+            {
+                MessageBox.Show("The national code must be 10 numbers and the first two numbers must be 00.");
+            }
+            else if (! Evaluator.checkEmail(txtCustomerEmail.Text))
+            {
+                MessageBox.Show("The email must be in the format A@B.C, where A and B are at least 3 letters and maximum 32 letters each And C can be at least 2 letters and at most 3 letters.");
+            }
+            else if (! Evaluator.checkPhonenumber(txtCustomerPhoneNUMBER.Text))
+            {
+                MessageBox.Show("Mobile numbers must be exactly 11 numbers and start with 09.");
+            }
+            else
+            {
+                Customer customer = new Customer(txtCustomerName.Text, txtCustomerLastName.Text, txtCustomerEmail.Text, txtCustomerSSN.Text, txtCustomerPhoneNUMBER.Text);
 
+                txtCustomerName.Text = "";
+                txtCustomerLastName.Text = "";
+                txtCustomerSSN.Text = "";
+                txtCustomerEmail.Text = "";
+                txtCustomerPhoneNUMBER.Text = "";
+
+                MessageBox.Show("Username: " + customer.username + "Password: " +customer.password);
+
+                RegisterPanel.Visibility = Visibility.Collapsed;
+            }
+
+          
         }
 
         private void btnSsnSearch_Click(object sender, RoutedEventArgs e)

@@ -113,7 +113,7 @@
                     </StackPanel>
                 </Border>
                 
-                <Border Name="RegisterPanel" Grid.Column="1" Visibility="Collapsed" Margin="0,2,0,2" Background="Transparent" Width="716" HorizontalAlignment="Center" BorderThickness="5" BorderBrush="Gray" CornerRadius="12">
+                <Border Name="RegisterPanel" Grid.Column="1" Visibility="Visible" Margin="0,2,0,2" Background="Transparent" Width="716" HorizontalAlignment="Center" BorderThickness="5" BorderBrush="Gray" CornerRadius="12">
                     <StackPanel Orientation="Vertical">
                         <Image Source="\Images\Customer Register.png" Width="300"/>
                         <StackPanel Orientation="Horizontal">
