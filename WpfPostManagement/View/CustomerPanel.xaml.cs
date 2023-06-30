@@ -113,6 +113,9 @@ namespace WpfPostManagement.View
             BoxInformationPanelCustomer.Visibility = Visibility.Collapsed;
             WalletPanel.Visibility = Visibility.Collapsed;
             ChangeInfoPanle.Visibility = Visibility.Visible;
+
+            txtNewUserName.Text = "";
+            txtNewPassword.Text = "";
         }
 
         private void btnBackCustomer_Click(object sender, RoutedEventArgs e)
@@ -358,13 +361,37 @@ namespace WpfPostManagement.View
 
         private void btnOkChangeInfo_Click(object sender, RoutedEventArgs e)
         {
-            ChargePanel.Visibility = Visibility.Collapsed;
-            MainWalletPanel.Visibility = Visibility.Visible;
+            
         }
 
         private void btnOkBoxInformation_Click(object sender, RoutedEventArgs e)
         {
-            BoxInformationPanelCustomer.Visibility = Visibility.Collapsed;
+            bool ReUsername = false;
+            for (int i = 0;i <Customer.customers.Count; i++)
+            {
+                if (customer.username == Customer.customers[i].username)
+                {
+                    ReUsername = true;
+                }
+            }
+
+            if (ReUsername)
+            {
+                MessageBox.Show("This username already exist.");
+            }
+            else if (!CheckEmpty(txtNewUserName.Text))
+            {
+                customer.username= txtNewUserName.Text;
+            }
+            else if (!CheckEmpty(txtNewPassword.Text))
+            {
+                customer.password = txtNewPassword.Text;
+            }
+            else
+            {
+                ChangeInfoPanle.Visibility = Visibility.Collapsed;
+            }
+            
         }
 
         private void btnOkCard_Click(object sender, RoutedEventArgs e)

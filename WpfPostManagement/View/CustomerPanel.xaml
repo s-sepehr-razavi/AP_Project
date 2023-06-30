@@ -219,9 +219,9 @@
                     </StackPanel>
                 </Border>
 
-                <Border Name="WalletPanel" Grid.Column="1" Visibility="Visible" Margin="0,2,0,2" Background="Transparent" Width="716" HorizontalAlignment="Center" BorderThickness="5" BorderBrush="Gray" CornerRadius="12">
+                <Border Name="WalletPanel" Grid.Column="1" Visibility="Collapsed" Margin="0,2,0,2" Background="Transparent" Width="716" HorizontalAlignment="Center" BorderThickness="5" BorderBrush="Gray" CornerRadius="12">
                     <StackPanel>
-                        <StackPanel Name="MainWalletPanel" Orientation="Vertical" Visibility="Collapsed">
+                        <StackPanel Name="MainWalletPanel" Orientation="Vertical" Visibility="Visible">
                             <Image Source="\Images\Wallet.png" Width="200"/>
                             <TextBlock FontSize="25" Margin="25" FontFamily="Forte Regular" Foreground="#d24e01 " HorizontalAlignment="Center">{ Account balance }</TextBlock>
                             <Label Name="AccountBalance" FontSize="25" Margin="25" FontFamily="Forte Regular" Content="---" HorizontalAlignment="Center" Foreground="Red"></Label>
@@ -229,7 +229,7 @@
                             </Button>
                         </StackPanel>
 
-                        <StackPanel x:Name="ChargePanel" Visibility="Visible">
+                        <StackPanel x:Name="ChargePanel" Visibility="Collapsed">
                             <Image Source="\Images\Money.png" Width="300"/>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="100">Card Number:</TextBlock>
