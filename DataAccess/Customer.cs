@@ -16,7 +16,7 @@ namespace DataAccess
         public string password { get; set; }
         public string phonenumber { get;set; }
         public static  List<Customer> customers { get; set; } = new List<Customer>();
-
+        public double AccountBalance;
 
         public Customer(string name, string lastName ,string email, string id, string phonenumber)
         {
@@ -25,7 +25,7 @@ namespace DataAccess
             this.email = email;
             this.id = id;
             this.phonenumber = phonenumber;
-
+            this.AccountBalance = 0;
             
 
             Random randomPass = new Random();

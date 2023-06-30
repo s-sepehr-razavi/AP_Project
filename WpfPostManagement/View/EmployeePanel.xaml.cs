@@ -276,8 +276,10 @@ namespace WpfPostManagement.View
 
 
                 Post AddPost = new Post (txtReceiverAddress.Text,txtSenderAddress.Text, PackageContent, Expensive, weight, txtPhonenUMBER.Text , ShipmentType, txtSSNsearch.Text);
+
                 MessageBox.Show("BOX ID:" + AddPost.id.ToString());
-                
+
+                OrderPanel.Visibility = Visibility.Collapsed;
             }
         }
 

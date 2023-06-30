@@ -75,9 +75,14 @@ namespace Utility
             return Regex.IsMatch(employeeID, @"^\d{2}9\d{2}$");
         }
 
-        public static bool checkDate(int year, int month, int day)
+        public static bool checkDate(int year, int month)
         {
-            DateTime dateTime = new DateTime(year, month, day);
+            if (month > 12)
+            {
+                month = 12;
+            }
+
+            DateTime dateTime = new DateTime(year, month, 1);
             return dateTime >= DateTime.Now;
         }
 
@@ -114,7 +119,7 @@ namespace Utility
             }
 
             // The number is valid if the sum is divisible by 10
-            return sum % 10 == 0;
+            return sum % 10 == 0 && sum != 0;
         }
 
     }

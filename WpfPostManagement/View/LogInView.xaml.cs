@@ -97,7 +97,7 @@ namespace WpfPostManagement.View
                 if (customer.password == txtPassword.Password)
                 {
                     //Customer Panel
-                    CustomerPanel customerPanel = new CustomerPanel();
+                    CustomerPanel customerPanel = new CustomerPanel(customer);
                     customerPanel.Show();
                     this.Close();
                 }
