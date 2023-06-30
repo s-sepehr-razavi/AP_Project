@@ -38,12 +38,13 @@ namespace Utility
             {
                 csv.WriteRecords(result);
             }
+
         }
 
         public static void SendEmail(string email, string input, string subject)
         {
-            string senderEmail = "s.sepehr.razavi@gmail.com"; // enter sender email
-            string senderPassword = ""; // enter sender password        
+            string senderEmail = "asgharshakib51@gmail.com"; // enter sender email
+            string senderPassword = "A1!b2!C3!d4"; // enter sender password        
             string body = input;
 
             MailMessage mail = new MailMessage();

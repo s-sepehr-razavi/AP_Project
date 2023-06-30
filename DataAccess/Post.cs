@@ -22,7 +22,6 @@ namespace DataAccess
         public string price { get; set; }
         public static List<Post> posts { get; set; } = new List<Post>();
         public Status PostStaus { get; set; }
-
         public string CustomerOpinion = "";
         public Post(string recieverAddress, string senderAddress, Content content, bool expensive, double weight, string phonenumber, bool express, string sSN)
         {

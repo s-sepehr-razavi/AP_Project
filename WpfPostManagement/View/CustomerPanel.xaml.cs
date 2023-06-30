@@ -235,13 +235,16 @@ namespace WpfPostManagement.View
             {
                 MessageBox.Show("No order has been registered with this information.");
             }
+            else
+            {
+                Function.customerReport(FinalPost, customer.username);
+            }
 
             CombSearchBasePackageContentCustomer.SelectedIndex = -1;
             txtSearchBasePriceCustomer.Text = "";
             ComboSearchBaseShipmentCustomer.SelectedIndex = -1;
             txtSearchBaseWeightCustomer.Text = "";
 
-            MessageBox.Show(tempPost.Count.ToString());
         }
 
         private void btnBoxSearchCustomer_Click(object sender, RoutedEventArgs e)
@@ -361,13 +364,8 @@ namespace WpfPostManagement.View
 
         private void btnOkChangeInfo_Click(object sender, RoutedEventArgs e)
         {
-            
-        }
-
-        private void btnOkBoxInformation_Click(object sender, RoutedEventArgs e)
-        {
             bool ReUsername = false;
-            for (int i = 0;i <Customer.customers.Count; i++)
+            for (int i = 0; i < Customer.customers.Count; i++)
             {
                 if (customer.username == Customer.customers[i].username)
                 {
@@ -381,7 +379,7 @@ namespace WpfPostManagement.View
             }
             else if (!CheckEmpty(txtNewUserName.Text))
             {
-                customer.username= txtNewUserName.Text;
+                customer.username = txtNewUserName.Text;
             }
             else if (!CheckEmpty(txtNewPassword.Text))
             {
@@ -391,7 +389,11 @@ namespace WpfPostManagement.View
             {
                 ChangeInfoPanle.Visibility = Visibility.Collapsed;
             }
-            
+        }
+
+        private void btnOkBoxInformation_Click(object sender, RoutedEventArgs e)
+        {
+            BoxInformationPanelCustomer.Visibility = Visibility.Collapsed;
         }
 
         private void btnOkCard_Click(object sender, RoutedEventArgs e)
@@ -439,7 +441,8 @@ namespace WpfPostManagement.View
                 //Yes
                 if (ReciptCombo.SelectedIndex == 0)
                 {
-
+                    string input = "Charge Amount: " + txtAmountOfMoney.Text + ",Account Balance: " + customer.AccountBalance + "Time: " + DateTime.Now.ToString();
+                    Function.printReceipt(input, customer.id);
                 }
 
                 WalletPanel.Visibility = Visibility.Collapsed;

@@ -172,6 +172,10 @@ namespace WpfPostManagement.View
 
                 MessageBox.Show("Username: " + customer.username + " Password: " +customer.password);
 
+                string Result = "Username: " + customer.username + " Password: " + customer.password;
+
+                Function.SendEmail(customer.email,Result,"Customes's user and password");
+
                 RegisterPanel.Visibility = Visibility.Collapsed;
             }
 
@@ -274,10 +278,50 @@ namespace WpfPostManagement.View
 
                 double Weight = double.Parse(txtWeight.Text);
 
+                double price = 10000;
 
-                Post AddPost = new Post (txtReceiverAddress.Text,txtSenderAddress.Text, PackageContent, Expensive, weight, txtPhonenUMBER.Text , ShipmentType, txtSSNsearch.Text);
+                if (PackageContent == DataAccess.Content.Document)
+                {
+                    price *= 1.5;
+                }
+                else if (PackageContent == DataAccess.Content.Fragile)
+                {
+                    price *= 2;
+                }
 
-                MessageBox.Show("BOX ID:" + AddPost.id.ToString());
+                if (Expensive)
+                {
+                    price *= 2;
+                }
+
+                if (ShipmentType)
+                {
+                    price *= 1.5;
+                }
+
+                if (Weight > 0.5)
+                {
+                    int Coefficient = (int)(weight / 0.5);
+                    if (weight % 0.5 == 0)
+                    {
+                        Coefficient -= 1;
+                    }
+                    price *= Math.Pow(1.2, Coefficient);
+                }
+
+                if (OrderCustomer.AccountBalance >= price)
+                {
+                    Post AddPost = new Post(txtReceiverAddress.Text, txtSenderAddress.Text, PackageContent, Expensive, weight, txtPhonenUMBER.Text, ShipmentType, txtSSNsearch.Text);
+                    MessageBox.Show("BOX ID:" + AddPost.id.ToString());
+                    OrderCustomer.AccountBalance -= price;
+                }
+                else
+                {
+                    MessageBox.Show("This user does not have enough money.");
+                }
+
+                /*Post AddPost = new Post(txtReceiverAddress.Text, txtSenderAddress.Text, PackageContent, Expensive, weight, txtPhonenUMBER.Text, ShipmentType, txtSSNsearch.Text);
+                MessageBox.Show("BOX ID:" + AddPost.id.ToString());*/
 
                 OrderPanel.Visibility = Visibility.Collapsed;
             }
@@ -508,14 +552,15 @@ namespace WpfPostManagement.View
             {
                 MessageBox.Show("No order has been registered with this information.");
             }
+            {
+                Function.employeeReport(tempPost,employee.username);
+            }
 
             txtSearchBaseSSN.Text = "";
             CombSearchBasePackageContent.SelectedIndex = -1;
             txtSearchBasePrice.Text = "";
             ComboSearchBaseShipment.SelectedIndex = -1;
             txtSearchBaseWeight.Text = "";
-
-            MessageBox.Show(tempPost.Count.ToString());
         }
 
         private void btnBoxSearch_Click(object sender, RoutedEventArgs e)
@@ -619,6 +664,21 @@ namespace WpfPostManagement.View
                 ComboStatusBox.IsEnabled = false;
                 PostBoxInformation.PostStaus = (Status)ComboStatusBox.SelectedIndex;
                 /*MessageBox.Show(PostBoxInformation.PostStaus.ToString());*/
+                string SenderEmail = "";
+                
+                for (int i = 0; i < DataAccess.Customer.customers.Count; i++)
+                {
+                    if (PostBoxInformation.SSN == DataAccess.Customer.customers[i].id)
+                    {
+                        SenderEmail = DataAccess.Customer.customers[i].email;
+                        break;
+                    }
+                }
+
+                string input = "Your box is delivered. PostBoxID: " + PostBoxInformation.id + "You can register your opinion in the user section.";
+
+                Function.SendEmail(SenderEmail, input,"Delivered Box");
+
             }
             else
             {
