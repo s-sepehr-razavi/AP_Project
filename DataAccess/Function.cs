@@ -390,6 +390,12 @@ namespace Utility
 
         public static void UpdatePost(Post post)
         {
+
+            if (!PostExists(post.id))
+            {
+                return;
+            }
+
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
@@ -420,6 +426,12 @@ namespace Utility
 
         public static void UpdateCustomer(Customer customer)
         {
+
+            if (!CustomerExists(customer.id))
+            {
+                return;
+            }
+
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
@@ -446,6 +458,12 @@ namespace Utility
 
         public static void UpdateEmployee(Employee employee)
         {
+
+            if (!EmployeeExists(employee.id))
+            {
+                return;
+            }
+
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
