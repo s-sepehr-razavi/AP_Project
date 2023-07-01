@@ -105,7 +105,7 @@ namespace Utility
                 }
 
                 // Create Table 3: Posts
-                string createPostsTableSql = "CREATE TABLE IF NOT EXISTS Posts (RecieverAddress TEXT, SenderAddress TEXT, Content TEXT, Expensive INTEGER, Weight REAL, PhoneNumber TEXT, Express INTEGER, ID INTEGER PRIMARY KEY AUTOINCREMENT, SenderID TEXT, SSN TEXT, Price TEXT, CustomerOpinion TEXT, PostStatus TEXT)";
+                string createPostsTableSql = "CREATE TABLE IF NOT EXISTS Posts (RecieverAddress TEXT, SenderAddress TEXT, Content TEXT, Expensive INTEGER, Weight REAL, PhoneNumber TEXT, Express INTEGER, ID INTEGER PRIMARY KEY AUTOINCREMENT, SSN TEXT, Price TEXT, CustomerOpinion TEXT, PostStatus TEXT)";
                 using (SQLiteCommand createPostsTableCommand = new SQLiteCommand(createPostsTableSql, connection))
                 {
                     createPostsTableCommand.ExecuteNonQuery();
@@ -290,7 +290,7 @@ namespace Utility
             {
                 connection.Open();
 
-                string sql = "INSERT INTO Posts (RecieverAddress, SenderAddress, Content, Expensive, Weight, PhoneNumber, Express, ID, SenderID, SSN, Price, CustomerOpinion, PostStatus) VALUES (@RecieverAddress, @SenderAddress, @Content, @Expensive, @Weight, @PhoneNumber, @Express, @ID, @SenderID, @SSN, @Price, @CustomerOpinion, @PostStatus)";
+                string sql = "INSERT INTO Posts (RecieverAddress, SenderAddress, Content, Expensive, Weight, PhoneNumber, Express, ID, SSN, Price, CustomerOpinion, PostStatus) VALUES (@RecieverAddress, @SenderAddress, @Content, @Expensive, @Weight, @PhoneNumber, @Express, @ID, @SSN, @Price, @CustomerOpinion, @PostStatus)";
 
                 using (SQLiteCommand command = new SQLiteCommand(sql, connection))
                 {
@@ -301,8 +301,7 @@ namespace Utility
                     command.Parameters.AddWithValue("@Weight", post.weight);
                     command.Parameters.AddWithValue("@PhoneNumber", post.phonenumber);
                     command.Parameters.AddWithValue("@Express", post.express ? 1 : 0);
-                    command.Parameters.AddWithValue("@ID", post.id);
-                    command.Parameters.AddWithValue("@SenderID", post.senderID);
+                    command.Parameters.AddWithValue("@ID", post.id);                    
                     command.Parameters.AddWithValue("@SSN", post.SSN);
                     command.Parameters.AddWithValue("@Price", post.price);
                     command.Parameters.AddWithValue("@CustomerOpinion", post.CustomerOpinion);
@@ -339,12 +338,11 @@ namespace Utility
                             post.weight = reader.GetDouble(4);
                             post.phonenumber = reader.GetString(5);
                             post.express = reader.GetInt32(6) == 1;
-                            post.id = reader.GetInt32(7);
-                            post.senderID = reader.GetString(8);
-                            post.SSN = reader.GetString(9);
-                            post.price = reader.GetString(10);
-                            post.CustomerOpinion = reader.GetString(11);
-                            post.PostStaus = (Status)Enum.Parse(typeof(Status), reader.GetString(12));
+                            post.id = reader.GetInt32(7);                            
+                            post.SSN = reader.GetString(8);
+                            post.price = reader.GetString(9);
+                            post.CustomerOpinion = reader.GetString(10);
+                            post.PostStaus = (Status)Enum.Parse(typeof(Status), reader.GetString(11));
                             posts.Add(post);
                         }
                     }
@@ -388,6 +386,88 @@ namespace Utility
             {
                 Function.InsertPost(item);
             }
-        } 
+        }
+
+        public static void UpdatePost(Post post)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+
+                string sql = "UPDATE Posts SET RecieverAddress = @RecieverAddress, SenderAddress = @SenderAddress, Content = @Content, Expensive = @Expensive, Weight = @Weight, PhoneNumber = @PhoneNumber, Express = @Express, SSN = @SSN, Price = @Price, CustomerOpinion = @CustomerOpinion, PostStatus = @PostStatus WHERE ID = @ID";
+
+                using (SQLiteCommand command = new SQLiteCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@RecieverAddress", post.recieverAddress);
+                    command.Parameters.AddWithValue("@SenderAddress", post.senderAddress);
+                    command.Parameters.AddWithValue("@Content", post.content.ToString());
+                    command.Parameters.AddWithValue("@Expensive", post.expensive ? 1 : 0);
+                    command.Parameters.AddWithValue("@Weight", post.weight);
+                    command.Parameters.AddWithValue("@PhoneNumber", post.phonenumber);
+                    command.Parameters.AddWithValue("@Express", post.express ? 1 : 0);                    
+                    command.Parameters.AddWithValue("@SSN", post.SSN);
+                    command.Parameters.AddWithValue("@Price", post.price);
+                    command.Parameters.AddWithValue("@CustomerOpinion", post.CustomerOpinion);
+                    command.Parameters.AddWithValue("@PostStatus", post.PostStaus.ToString());
+                    command.Parameters.AddWithValue("@ID", post.id);
+
+                    command.ExecuteNonQuery();
+                }
+
+                connection.Close();
+            }
+        }
+
+        public static void UpdateCustomer(Customer customer)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+
+                string sql = "UPDATE Customers SET Name = @Name, LastName = @LastName, Username = @Username, Email = @Email, Password = @Password, PhoneNumber = @PhoneNumber, AccountBalance = @AccountBalance WHERE ID = @ID";
+
+                using (SQLiteCommand command = new SQLiteCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@Name", customer.name);
+                    command.Parameters.AddWithValue("@LastName", customer.lastName);
+                    command.Parameters.AddWithValue("@Username", customer.username);
+                    command.Parameters.AddWithValue("@Email", customer.email);
+                    command.Parameters.AddWithValue("@Password", customer.password);
+                    command.Parameters.AddWithValue("@PhoneNumber", customer.phonenumber);
+                    command.Parameters.AddWithValue("@AccountBalance", customer.AccountBalance);
+                    command.Parameters.AddWithValue("@ID", customer.id);
+
+                    command.ExecuteNonQuery();
+                }
+
+                connection.Close();
+            }
+        }
+
+        public static void UpdateEmployee(Employee employee)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+
+                string sql = "UPDATE Employees SET Name = @Name, LastName = @LastName, Username = @Username, Email = @Email, Password = @Password WHERE ID = @ID";
+
+                using (SQLiteCommand command = new SQLiteCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@Name", employee.name);
+                    command.Parameters.AddWithValue("@LastName", employee.lastName);
+                    command.Parameters.AddWithValue("@Username", employee.username);
+                    command.Parameters.AddWithValue("@Email", employee.email);
+                    command.Parameters.AddWithValue("@Password", employee.password);
+                    command.Parameters.AddWithValue("@ID", employee.id);
+
+                    command.ExecuteNonQuery();
+                }
+
+                connection.Close();
+            }
+        }
+
+
     }
 }

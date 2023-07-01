@@ -17,7 +17,7 @@ namespace DataAccess
         // True =  Express, False = Regular
         public bool express { get; set; }
         public int id { get; set; }
-        public string senderID { get; set; }
+        //public string senderID { get; set; }
         public string SSN { get; set; }
         public string price { get; set; }
         public static List<Post> posts { get; set; } = new List<Post>();
@@ -90,19 +90,19 @@ namespace DataAccess
             return result;
         }
 
-        static public List<Post> searchByID(string id)
-        {
-            List<Post> result = new List<Post>();
-            foreach (var item in posts)
-            {                
-                if (item.senderID == id)
-                {
-                    result.Add(item);
-                }
-            }
+        //static public List<Post> searchByID(string id)
+        //{
+        //    List<Post> result = new List<Post>();
+        //    foreach (var item in posts)
+        //    {                
+        //        if (item.senderID == id)
+        //        {
+        //            result.Add(item);
+        //        }
+        //    }
 
-            return result;
-        }
+        //    return result;
+        //}
 
         static public List<Post> searchByWeight(double min, double max)
         {
