@@ -40,6 +40,7 @@ namespace WpfPostManagement.View
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
+            Function.SavingDatatoDB();
             Application.Current.Shutdown();
         }
 
@@ -53,6 +54,33 @@ namespace WpfPostManagement.View
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
+            bool ReUsername = false;
+            for (int i = 0; i < Customer.customers.Count; i++)
+            {
+                if (txtUsername.Text == Customer.customers[i].username)
+                {
+                    ReUsername = true;
+                }
+            }
+
+            for (int i = 0; i < Employee.EmployeesList.Count; i++)
+            {
+                if (Employee.EmployeesList[i].username == txtUsername.Text)
+                {
+                    ReUsername = true;
+                }
+            }
+
+            bool ReId = false;
+
+            for (int i = 0; i < Employee.EmployeesList.Count; i++)
+            {
+                if (Employee.EmployeesList[i].id == txtid.Text)
+                {
+                    ReId = true;
+                }
+            }
+
             if (! Evaluator.checkName(txtEmployeeName.Text))
             {
                 MessageBox.Show("Names must be at least 3 letters and at most 32 letters and only consist of letters Do not have characters or numbers.");
@@ -65,9 +93,17 @@ namespace WpfPostManagement.View
             {
                 MessageBox.Show("The personnel code of the employee during registration should contain only 5 numbers and the third number should be 9.");
             }
+            else if (ReId)
+            {
+                MessageBox.Show("This ID already exist.");
+            }
             else if (! Evaluator.checkName(txtUsername.Text))
             {
                 MessageBox.Show("Usernames must be at least 3 letters and at most 32 letters and only consist of letters Do not have characters or numbers.");
+            }
+            else if (ReUsername)
+            {
+                MessageBox.Show("This username already taken.");
             }
             else if (!Evaluator.checkEmail(txtEmail.Text))
             {
@@ -80,6 +116,7 @@ namespace WpfPostManagement.View
             else if (txtPass.Text == txtRePass.Text)
             {
                 Employee Register = new Employee(txtEmployeeName.Text,txtLastName.Text,txtid.Text,txtUsername.Text,txtEmail.Text,txtPass.Text);
+                /*Function.SavingDatatoDB();*/
                 LogInView Test = new LogInView();
                 Test.Show();
                 this.Close();

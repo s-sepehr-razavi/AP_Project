@@ -51,6 +51,7 @@ namespace WpfPostManagement.View
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
+            /*Function.SavingDatatoDB();*/
             Application.Current.Shutdown();
         }
 
@@ -134,6 +135,7 @@ namespace WpfPostManagement.View
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
+            Function.SavingDatatoDB();
             LogInView Test = new LogInView();
             Test.Show();
             this.Close();
@@ -141,6 +143,17 @@ namespace WpfPostManagement.View
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
+            bool ReSSNflag = false;
+
+            for (int i = 0; i < DataAccess.Customer.customers.Count ;i++)
+            {
+                if (DataAccess.Customer.customers[i].id == txtCustomerSSN.Text)
+                {
+                    ReSSNflag = true;
+                    break;
+                }
+            }
+
             if (!Evaluator.checkName(txtCustomerName.Text))
             {
                 MessageBox.Show("Names must be at least 3 letters and at most 32 letters and only consist of letters Do not have characters or numbers.");
@@ -152,6 +165,10 @@ namespace WpfPostManagement.View
             else if (! Evaluator.checkSSN(txtCustomerSSN.Text))
             {
                 MessageBox.Show("The national code must be 10 numbers and the first two numbers must be 00.");
+            }
+            else if (ReSSNflag)
+            {
+                MessageBox.Show("This SSN already has an account.");
             }
             else if (! Evaluator.checkEmail(txtCustomerEmail.Text))
             {
@@ -542,7 +559,7 @@ namespace WpfPostManagement.View
                     }
                 }
 
-                if (Count == checkCounter)
+                if (Count == checkCounter && checkCounter != 0)
                 {
                     GlobalFlag = true;
                     tempPost.Add(Post.posts[i]);

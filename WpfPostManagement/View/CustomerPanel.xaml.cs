@@ -44,6 +44,7 @@ namespace WpfPostManagement.View
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
+            Function.SavingDatatoDB();
             System.Windows.Application.Current.Shutdown();
         }
         public static bool CheckEmpty(string text)
@@ -124,6 +125,7 @@ namespace WpfPostManagement.View
 
         private void btnBackCustomer_Click(object sender, RoutedEventArgs e)
         {
+            /*Function.SavingDatatoDB();*/
             LogInView Test = new LogInView();
             Test.Show();
             this.Close();
@@ -229,7 +231,7 @@ namespace WpfPostManagement.View
 
             for (int  i = 0; i < tempPost.Count; i++)
             {
-                if (tempPost[i].SSN == customer.id)
+                if (tempPost[i].SSN == customer.id && checkCounter != 0)
                 {
                     GlobalFlag = true;
                     FinalPost.Add(tempPost[i]);
@@ -347,7 +349,7 @@ namespace WpfPostManagement.View
         private void btnBackCustumerOpinion_Click(object sender, RoutedEventArgs e)
         {
             PostBoxInformation.CustomerOpinion = txtCustomerId.Text;
-
+            txtCustomerId.Text = "";
             CustomerOpinionStackPanel.Visibility = Visibility.Collapsed;
             MainBoxInformationPanelCustomer.Visibility = Visibility.Visible;
         }
@@ -466,7 +468,7 @@ namespace WpfPostManagement.View
                 if (ReciptCombo.SelectedIndex == 0)
                 {
                     string input = "Charge Amount: " + txtAmountOfMoney.Text + ",Account Balance: " + customer.AccountBalance + "Time: " + DateTime.Now.ToString();
-                    Function.printReceipt(input, DateTime.Now.ToString() + " " + customer.id);
+                    Function.printReceipt(input, customer.id);
                 }
 
                 WalletPanel.Visibility = Visibility.Collapsed;

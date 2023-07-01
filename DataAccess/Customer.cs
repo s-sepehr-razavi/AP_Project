@@ -18,6 +18,11 @@ namespace DataAccess
         public static  List<Customer> customers { get; set; } = new List<Customer>();
         public double AccountBalance;
 
+        public Customer()
+        {
+
+        }
+
         public Customer(string name, string lastName ,string email, string id, string phonenumber)
         {
             this.name = name;    

@@ -38,7 +38,7 @@ namespace DataAccess
             this.PostStaus = Status.Registered;
             this.price = calculatePrice().ToString();
         }
-
+        public Post() { }
         public double calculatePrice()
         {
             double price = 10000;
