@@ -112,6 +112,7 @@ namespace WpfPostManagement.View
             SearchInformatioPanel.Visibility = Visibility.Visible;
             MainBoxInformationPanel.Visibility = Visibility.Collapsed;
 
+            txtIdSearch.Text = "";
             ComboStatusBox.IsEnabled = true;
 
             LableSSN.Content = "";
@@ -472,6 +473,7 @@ namespace WpfPostManagement.View
             if (ComboSearchBaseShipment.SelectedIndex > -1)
             {
                 checkCounter++;
+                ShipmentFlag = true;
                 if (ComboSearchBaseShipment.SelectedIndex == 0)
                 {
                     Shipment = false;

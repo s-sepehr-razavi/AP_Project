@@ -93,6 +93,10 @@ namespace WpfPostManagement.View
             BoxInformationPanelCustomer.Visibility = Visibility.Visible;
             WalletPanel.Visibility = Visibility.Collapsed;
             ChangeInfoPanle.Visibility = Visibility.Collapsed;
+
+            MainBoxInformationPanelCustomer.Visibility = Visibility.Collapsed;
+            SearchInformatioPanelCustomer.Visibility = Visibility.Visible;
+            txtIdSearchCustomer.Text = "";
         }
 
         private void btnWallet_Click(object sender, RoutedEventArgs e)
@@ -153,6 +157,7 @@ namespace WpfPostManagement.View
             if (ComboSearchBaseShipmentCustomer.SelectedIndex > -1)
             {
                 checkCounter++;
+                ShipmentFlag = true;
                 if (ComboSearchBaseShipmentCustomer.SelectedIndex == 0)
                 {
                     Shipment = false;
@@ -367,11 +372,19 @@ namespace WpfPostManagement.View
             bool ReUsername = false;
             for (int i = 0; i < Customer.customers.Count; i++)
             {
-                if (customer.username == Customer.customers[i].username)
+                if (txtNewUserName.Text == Customer.customers[i].username)
                 {
                     ReUsername = true;
                 }
             }
+
+            for (int i = 0; i < Employee.EmployeesList.Count; i++)
+            {
+                if (Employee.EmployeesList[i].username == txtNewUserName.Text)
+                {
+                    ReUsername = true;
+                }
+            } 
 
             if (ReUsername)
             {
@@ -380,20 +393,31 @@ namespace WpfPostManagement.View
             else if (!CheckEmpty(txtNewUserName.Text))
             {
                 customer.username = txtNewUserName.Text;
-            }
-            else if (!CheckEmpty(txtNewPassword.Text))
-            {
-                customer.password = txtNewPassword.Text;
+                if (!CheckEmpty(txtNewPassword.Text))
+                {
+                    customer.password = txtNewPassword.Text;
+                }
+                else
+                {
+                    MessageBox.Show("If password box is empty,then password is not changed.");
+                }
             }
             else
             {
-                ChangeInfoPanle.Visibility = Visibility.Collapsed;
+                MessageBox.Show("If username box is empty,then username is not changed.");
             }
+
+            
+
+            ChangeInfoPanle.Visibility = Visibility.Collapsed;
+
         }
 
         private void btnOkBoxInformation_Click(object sender, RoutedEventArgs e)
         {
             BoxInformationPanelCustomer.Visibility = Visibility.Collapsed;
+            MainBoxInformationPanelCustomer.Visibility= Visibility.Collapsed;
+            SearchInformatioPanelCustomer.Visibility = Visibility.Collapsed;
         }
 
         private void btnOkCard_Click(object sender, RoutedEventArgs e)
@@ -442,7 +466,7 @@ namespace WpfPostManagement.View
                 if (ReciptCombo.SelectedIndex == 0)
                 {
                     string input = "Charge Amount: " + txtAmountOfMoney.Text + ",Account Balance: " + customer.AccountBalance + "Time: " + DateTime.Now.ToString();
-                    Function.printReceipt(input, customer.id);
+                    Function.printReceipt(input, DateTime.Now.ToString() + " " + customer.id);
                 }
 
                 WalletPanel.Visibility = Visibility.Collapsed;
