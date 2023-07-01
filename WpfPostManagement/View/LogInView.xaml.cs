@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DataAccess;
-
+using Utility;
 
 namespace WpfPostManagement.View
 {
@@ -23,8 +23,19 @@ namespace WpfPostManagement.View
     {
         Employee employee;
         Customer customer;
+        public static bool Fist = true;
+
         public LogInView()
         {
+            if (Fist)
+            {
+                Function.CreateTables();
+                DataAccess.Customer.customers = Function.RetrieveCustomers();
+                DataAccess.Employee.EmployeesList = Function.RetrieveEmployees();
+                DataAccess.Post.posts = Function.RetrievePosts();
+                Fist = false;
+            }
+           
             InitializeComponent();
         }
 
@@ -43,12 +54,14 @@ namespace WpfPostManagement.View
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
+            Function.SavingDatatoDB();
+
             Application.Current.Shutdown();
         }
 
         private void btnLogIN_Click(object sender, RoutedEventArgs e)
         {
-            
+
             //FindEmployee
             bool EmployeeFlag = false;
 
@@ -97,7 +110,7 @@ namespace WpfPostManagement.View
                 if (customer.password == txtPassword.Password)
                 {
                     //Customer Panel
-                    CustomerPanel customerPanel = new CustomerPanel();
+                    CustomerPanel customerPanel = new CustomerPanel(customer);
                     customerPanel.Show();
                     this.Close();
                 }
@@ -115,7 +128,7 @@ namespace WpfPostManagement.View
 
         private void btnRegisterEmployees_Click(object sender, RoutedEventArgs e)
         {
-            
+
             RegisterEmployees register = new RegisterEmployees();
             register.Show();
             this.Close();

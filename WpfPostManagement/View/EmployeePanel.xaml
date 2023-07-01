@@ -239,7 +239,7 @@
                     </StackPanel>
                 </Border>
 
-                <Border Name="ReportPanel" Grid.Column="1" Visibility="Visible" Margin="0,2,0,2" Background="Transparent" Width="716" HorizontalAlignment="Center" BorderThickness="5" BorderBrush="Gray" CornerRadius="12">
+                <Border Name="ReportPanel" Grid.Column="1" Visibility="Collapsed" Margin="0,2,0,2" Background="Transparent" Width="716" HorizontalAlignment="Center" BorderThickness="5" BorderBrush="Gray" CornerRadius="12">
                     <StackPanel Visibility="Visible">
                         <Image Source="\Images\search.png" Width="150"/>
                         <StackPanel Orientation="Horizontal">
@@ -277,17 +277,17 @@
 
                 <Border Name="BoxInformationPanel" Grid.Column="1" Visibility="Collapsed" Margin="0,2,0,2" Background="Transparent" Width="716" HorizontalAlignment="Center" BorderThickness="5" BorderBrush="Gray" CornerRadius="12">
                     <StackPanel>
-                        <StackPanel x:Name="SearchInformatioPanel" Visibility="Collapsed">
+                        <StackPanel x:Name="SearchInformatioPanel" Visibility="Visible">
                             <Image Source="\Images\search.png" Width="150"/>
                             <TextBlock FontSize="25" Margin="25" FontFamily="Forte Regular" Foreground="#d24e01 " HorizontalAlignment="Center">{ Enter BOX ID  Please }</TextBlock>
                             <TextBox Margin="0,0,0,25" Name="txtIdSearch" Width="500" Background="Transparent" BorderThickness="3" BorderBrush="DarkGray">
                             </TextBox>
 
-                            <Button x:Name="btnBoxSearch" Click="btnSsnSearch_Click" Width="100" Height="50" Content="Search" FontSize="15" FontFamily="Lucida Handwriting Italic" Background="Gray">
+                            <Button x:Name="btnBoxSearch" Click="btnBoxSearch_Click" Width="100" Height="50" Content="Search" FontSize="15" FontFamily="Lucida Handwriting Italic" Background="Gray">
 
                             </Button>
                         </StackPanel>
-                        <StackPanel x:Name="MainBoxInformationPanel" Visibility="Visible">
+                        <StackPanel x:Name="MainBoxInformationPanel" Visibility="Collapsed">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Sender's SSN:</TextBlock>
                                 <Label Name="LableSSN" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Margin="15" Content="---"></Label>
@@ -334,7 +334,7 @@
                                 <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Box Status:</TextBlock>
                                 <ComboBox Name="ComboStatusBox" Width="500" Height="35">
                                     <ComboBoxItem>Registered</ComboBoxItem>
-                                    <ComboBoxItem>Ready To Send</ComboBoxItem>
+                                    <ComboBoxItem>ReadyToSend</ComboBoxItem>
                                     <ComboBoxItem>Sending</ComboBoxItem>
                                     <ComboBoxItem>Deliverd</ComboBoxItem>
                                 </ComboBox>
@@ -343,6 +343,9 @@
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Margin="50,20,10,20" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Width="140">Customer Opinion:</TextBlock>
                                 <Label Name="LableCustumerOpinion" Foreground="WhiteSmoke" FontSize="15" FontFamily="Jokerman Regular" Margin="15" Content="---"></Label>
+                                <Button Margin="300,0,0,0" x:Name="btnOkBoxInformation" Click="btnOkBoxInformation_Click" Width="100" Height="50" Content="Ok" FontSize="15" FontFamily="Lucida Handwriting Italic" Background="Gray">
+
+                                </Button>
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>

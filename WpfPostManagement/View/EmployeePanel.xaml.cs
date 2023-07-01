@@ -25,6 +25,7 @@ namespace WpfPostManagement.View
     {
         Employee employee;
         Customer OrderCustomer;
+        Post PostBoxInformation;
         public static bool CheckEmpty(string text)
         {
             return string.IsNullOrEmpty(text);
@@ -50,6 +51,7 @@ namespace WpfPostManagement.View
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
+            /*Function.SavingDatatoDB();*/
             Application.Current.Shutdown();
         }
 
@@ -93,6 +95,12 @@ namespace WpfPostManagement.View
             OrderPanel.Visibility = Visibility.Collapsed;
             ReportPanel.Visibility = Visibility.Visible;
             BoxInformationPanel.Visibility = Visibility.Collapsed;
+
+            txtSearchBaseSSN.Text = "";
+            CombSearchBasePackageContent.SelectedIndex = -1;
+            txtSearchBasePrice.Text = "";
+            ComboSearchBaseShipment.SelectedIndex = -1;
+            txtSearchBaseWeight.Text = "";
         }
 
         private void btnInformation_Click(object sender, RoutedEventArgs e)
@@ -101,10 +109,33 @@ namespace WpfPostManagement.View
             OrderPanel.Visibility = Visibility.Collapsed;
             ReportPanel.Visibility = Visibility.Collapsed;
             BoxInformationPanel.Visibility = Visibility.Visible;
+
+            SearchInformatioPanel.Visibility = Visibility.Visible;
+            MainBoxInformationPanel.Visibility = Visibility.Collapsed;
+
+            txtIdSearch.Text = "";
+            ComboStatusBox.IsEnabled = true;
+
+            LableSSN.Content = "";
+            LableSenderAddress.Content = "";
+            LableReceiverAddress.Content = "";
+            LablePackgeContent.Content = "";
+            LableValubleItem.Content = "";
+            LableShipmentType.Content = "";
+
+            LablePhoneNumber.Content = "";
+
+            LableWeight.Content = "";
+
+            LableTotalPrice.Content = "";
+
+            LablePackageId.Content = "";
+            ComboStatusBox.SelectedIndex = -1;
         }      
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
+            Function.SavingDatatoDB();
             LogInView Test = new LogInView();
             Test.Show();
             this.Close();
@@ -112,6 +143,17 @@ namespace WpfPostManagement.View
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
+            bool ReSSNflag = false;
+
+            for (int i = 0; i < DataAccess.Customer.customers.Count ;i++)
+            {
+                if (DataAccess.Customer.customers[i].id == txtCustomerSSN.Text)
+                {
+                    ReSSNflag = true;
+                    break;
+                }
+            }
+
             if (!Evaluator.checkName(txtCustomerName.Text))
             {
                 MessageBox.Show("Names must be at least 3 letters and at most 32 letters and only consist of letters Do not have characters or numbers.");
@@ -123,6 +165,10 @@ namespace WpfPostManagement.View
             else if (! Evaluator.checkSSN(txtCustomerSSN.Text))
             {
                 MessageBox.Show("The national code must be 10 numbers and the first two numbers must be 00.");
+            }
+            else if (ReSSNflag)
+            {
+                MessageBox.Show("This SSN already has an account.");
             }
             else if (! Evaluator.checkEmail(txtCustomerEmail.Text))
             {
@@ -143,6 +189,10 @@ namespace WpfPostManagement.View
                 txtCustomerPhoneNUMBER.Text = "";
 
                 MessageBox.Show("Username: " + customer.username + " Password: " +customer.password);
+
+                string Result = "Username: " + customer.username + " Password: " + customer.password;
+
+                Function.SendEmail(customer.email,Result,"Customes's user and password");
 
                 RegisterPanel.Visibility = Visibility.Collapsed;
             }
@@ -246,9 +296,52 @@ namespace WpfPostManagement.View
 
                 double Weight = double.Parse(txtWeight.Text);
 
+                double price = 10000;
 
-                Post AddPost = new Post (txtReceiverAddress.Text,txtSenderAddress.Text, PackageContent, Expensive, weight, txtPhonenUMBER.Text , ShipmentType, txtSSNsearch.Text);
-                MessageBox.Show("BOX ID:" + AddPost.id.ToString());
+                if (PackageContent == DataAccess.Content.Document)
+                {
+                    price *= 1.5;
+                }
+                else if (PackageContent == DataAccess.Content.Fragile)
+                {
+                    price *= 2;
+                }
+
+                if (Expensive)
+                {
+                    price *= 2;
+                }
+
+                if (ShipmentType)
+                {
+                    price *= 1.5;
+                }
+
+                if (Weight > 0.5)
+                {
+                    int Coefficient = (int)(weight / 0.5);
+                    if (weight % 0.5 == 0)
+                    {
+                        Coefficient -= 1;
+                    }
+                    price *= Math.Pow(1.2, Coefficient);
+                }
+
+                if (OrderCustomer.AccountBalance >= price)
+                {
+                    Post AddPost = new Post(txtReceiverAddress.Text, txtSenderAddress.Text, PackageContent, Expensive, weight, txtPhonenUMBER.Text, ShipmentType, txtSSNsearch.Text);
+                    MessageBox.Show("BOX ID:" + AddPost.id.ToString());
+                    OrderCustomer.AccountBalance -= price;
+                }
+                else
+                {
+                    MessageBox.Show("This user does not have enough money.");
+                }
+
+                /*Post AddPost = new Post(txtReceiverAddress.Text, txtSenderAddress.Text, PackageContent, Expensive, weight, txtPhonenUMBER.Text, ShipmentType, txtSSNsearch.Text);
+                MessageBox.Show("BOX ID:" + AddPost.id.ToString());*/
+
+                OrderPanel.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -397,6 +490,7 @@ namespace WpfPostManagement.View
             if (ComboSearchBaseShipment.SelectedIndex > -1)
             {
                 checkCounter++;
+                ShipmentFlag = true;
                 if (ComboSearchBaseShipment.SelectedIndex == 0)
                 {
                     Shipment = false;
@@ -435,7 +529,7 @@ namespace WpfPostManagement.View
                 //2
                 if (PackageContentFlag)
                 {
-                    if (Enum.Equals(Post.posts[i].content, PackageContent))
+                    if (Post.posts[i].content == PackageContent)
                     {
                         Count++;
                     }
@@ -451,7 +545,7 @@ namespace WpfPostManagement.View
                 //4
                 if (ShipmentFlag)
                 {
-                    if (Post.posts[i].express == Shipment)
+                    if (Post.posts[i].express.ToString() == Shipment.ToString())
                     {
                         Count++;
                     }
@@ -465,7 +559,7 @@ namespace WpfPostManagement.View
                     }
                 }
 
-                if (Count == checkCounter)
+                if (Count == checkCounter && checkCounter != 0)
                 {
                     GlobalFlag = true;
                     tempPost.Add(Post.posts[i]);
@@ -477,6 +571,142 @@ namespace WpfPostManagement.View
             {
                 MessageBox.Show("No order has been registered with this information.");
             }
+            {
+                Function.employeeReport(tempPost,employee.username);
+            }
+
+            txtSearchBaseSSN.Text = "";
+            CombSearchBasePackageContent.SelectedIndex = -1;
+            txtSearchBasePrice.Text = "";
+            ComboSearchBaseShipment.SelectedIndex = -1;
+            txtSearchBaseWeight.Text = "";
+        }
+
+        private void btnBoxSearch_Click(object sender, RoutedEventArgs e)
+        {
+            bool flag = false;
+
+            for (int i = 0; i < Post.posts.Count(); i++)
+            {
+                if (Post.posts[i].id.ToString() == txtIdSearch.Text)
+                {
+                    flag = true;
+                    PostBoxInformation = Post.posts[i];
+                    break;
+                }
+            }
+
+            if (flag)
+            {
+                MainBoxInformationPanel.Visibility = Visibility.Visible;
+                SearchInformatioPanel.Visibility = Visibility.Collapsed;
+
+                LableSSN.Content = PostBoxInformation.SSN;
+                LableSenderAddress.Content = PostBoxInformation.senderAddress;
+                LableReceiverAddress.Content = PostBoxInformation.recieverAddress;
+                LablePackgeContent.Content = PostBoxInformation.content.ToString();
+
+                string valuable = "";
+                if (PostBoxInformation.expensive)
+                {
+                    valuable = "Yes";
+                }
+                else
+                {
+                    valuable = "No";
+                }
+                LableValubleItem.Content = valuable;
+
+                string shipmnet = "";
+                if (PostBoxInformation.express)
+                {
+                    shipmnet = "Express";
+                }
+                else
+                {
+                    shipmnet = "Regular";
+                }
+
+                LableShipmentType.Content = shipmnet;
+
+                LablePhoneNumber.Content = PostBoxInformation.phonenumber;
+
+                LableWeight.Content = PostBoxInformation.weight;
+
+                LableTotalPrice.Content = PostBoxInformation.price;
+
+                LablePackageId.Content = PostBoxInformation.id;
+
+                if (PostBoxInformation.PostStaus == DataAccess.Status.Registered)
+                {
+                    ComboStatusBox.SelectedIndex = 0;
+                }
+                else if (PostBoxInformation.PostStaus == DataAccess.Status.ReadyToSend)
+                {
+                    ComboStatusBox.SelectedIndex = 1;
+                }
+                else if (PostBoxInformation.PostStaus == DataAccess.Status.Sending)
+                {
+                    ComboStatusBox.SelectedIndex = 2;
+                }
+                else if (PostBoxInformation.PostStaus == DataAccess.Status.Deliverd)
+                {
+                    ComboStatusBox.SelectedIndex = 3;
+                    ComboStatusBox.IsEnabled = false;
+                }
+                else
+                {
+                    ComboStatusBox.SelectedIndex = -1;
+                }
+
+                if (PostBoxInformation.CustomerOpinion == "")
+                {
+                    LableCustumerOpinion.Content = "---";
+                }
+                else
+                {
+                    LableCustumerOpinion.Content = PostBoxInformation.CustomerOpinion;
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("This ID doesn't exist.");
+            }
+        }
+
+        private void btnOkBoxInformation_Click(object sender, RoutedEventArgs e)
+        {
+            if (ComboStatusBox.SelectedIndex == 3)
+            {
+                MessageBox.Show("This content cannot be changed.");
+                ComboStatusBox.IsEnabled = false;
+                PostBoxInformation.PostStaus = (Status)ComboStatusBox.SelectedIndex;
+                /*MessageBox.Show(PostBoxInformation.PostStaus.ToString());*/
+                string SenderEmail = "";
+                
+                for (int i = 0; i < DataAccess.Customer.customers.Count; i++)
+                {
+                    if (PostBoxInformation.SSN == DataAccess.Customer.customers[i].id)
+                    {
+                        SenderEmail = DataAccess.Customer.customers[i].email;
+                        break;
+                    }
+                }
+
+                string input = "Your box is delivered. PostBoxID: " + PostBoxInformation.id + "You can register your opinion in the user section.";
+
+                Function.SendEmail(SenderEmail, input,"Delivered Box");
+
+            }
+            else
+            {
+                ComboStatusBox.IsEnabled = true;
+                PostBoxInformation.PostStaus = (Status)ComboStatusBox.SelectedIndex;
+                /*MessageBox.Show(PostBoxInformation.PostStaus.ToString());*/
+            }
+
+            BoxInformationPanel.Visibility = Visibility.Collapsed;
         }
     }
 

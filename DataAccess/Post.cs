@@ -21,7 +21,8 @@ namespace DataAccess
         public string SSN { get; set; }
         public string price { get; set; }
         public static List<Post> posts { get; set; } = new List<Post>();
-
+        public Status PostStaus { get; set; }
+        public string CustomerOpinion = "";
         public Post(string recieverAddress, string senderAddress, Content content, bool expensive, double weight, string phonenumber, bool express, string sSN)
         {
             this.recieverAddress = recieverAddress;
@@ -34,9 +35,10 @@ namespace DataAccess
             posts.Add(this);
             this.id = posts.Count;
             SSN = sSN;
+            this.PostStaus = Status.Registered;
             this.price = calculatePrice().ToString();
         }
-
+        public Post() { }
         public double calculatePrice()
         {
             double price = 10000;
@@ -151,6 +153,14 @@ namespace DataAccess
         Object,
         Document,
         Fragile
+    }
+
+    public enum Status
+    {
+        Registered,
+        ReadyToSend,
+        Sending,
+        Deliverd
     }
     
 }

@@ -26,5 +26,7 @@ namespace DataAccess
             this.password = password;
             EmployeesList.Add(this);
         }
+
+        public Employee() { }
     }
 }
