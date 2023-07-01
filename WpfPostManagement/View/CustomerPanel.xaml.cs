@@ -352,6 +352,7 @@ namespace WpfPostManagement.View
             txtCustomerId.Text = "";
             CustomerOpinionStackPanel.Visibility = Visibility.Collapsed;
             MainBoxInformationPanelCustomer.Visibility = Visibility.Visible;
+            Function.UpdatePost(PostBoxInformation);
         }
 
         private void btnChargeAccount_Click(object sender, RoutedEventArgs e)
@@ -395,9 +396,11 @@ namespace WpfPostManagement.View
             else if (!CheckEmpty(txtNewUserName.Text))
             {
                 customer.username = txtNewUserName.Text;
+                Function.UpdateCustomer(customer);
                 if (!CheckEmpty(txtNewPassword.Text))
                 {
                     customer.password = txtNewPassword.Text;
+                    Function.UpdateCustomer(customer);
                 }
                 else
                 {
@@ -463,7 +466,7 @@ namespace WpfPostManagement.View
             else
             {
                 customer.AccountBalance += double.Parse(txtAmountOfMoney.Text);
-
+                Function.UpdateCustomer(customer);
                 //Yes
                 if (ReciptCombo.SelectedIndex == 0)
                 {

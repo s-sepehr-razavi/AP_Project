@@ -697,13 +697,14 @@ namespace WpfPostManagement.View
                 string input = "Your box is delivered. PostBoxID: " + PostBoxInformation.id + "You can register your opinion in the user section.";
 
                 Function.SendEmail(SenderEmail, input,"Delivered Box");
-
+                Function.UpdatePost(PostBoxInformation);
             }
             else
             {
                 ComboStatusBox.IsEnabled = true;
                 PostBoxInformation.PostStaus = (Status)ComboStatusBox.SelectedIndex;
                 /*MessageBox.Show(PostBoxInformation.PostStaus.ToString());*/
+                Function.UpdatePost(PostBoxInformation);
             }
 
             BoxInformationPanel.Visibility = Visibility.Collapsed;

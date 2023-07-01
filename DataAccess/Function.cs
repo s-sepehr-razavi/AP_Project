@@ -91,7 +91,7 @@ namespace Utility
                 connection.Open();
 
                 // Create Table 1: Customers
-                string createCustomersTableSql = "CREATE TABLE IF NOT EXISTS Customers (Name TEXT, LastName TEXT, Id TEXT PRIMARY KEY, Username TEXT, Email TEXT, Password TEXT)";
+                string createCustomersTableSql = "CREATE TABLE IF NOT EXISTS Customers (Name TEXT, LastName TEXT, Id TEXT PRIMARY KEY, Username TEXT, Email TEXT, Password TEXT, Phonenumber TEXT, AccountBalance REAL)";
                 using (SQLiteCommand createCustomersTableCommand = new SQLiteCommand(createCustomersTableSql, connection))
                 {
                     createCustomersTableCommand.ExecuteNonQuery();
@@ -126,7 +126,7 @@ namespace Utility
             {
                 connection.Open();
 
-                string sql = "INSERT INTO Customers (Name, LastName, Id, Username, Email, Password) VALUES (@Name, @LastName, @Id, @Username, @Email, @Password)";
+                string sql = "INSERT INTO Customers (Name, LastName, Id, Username, Email, Password, Phonenumber, AccountBalance) VALUES (@Name, @LastName, @Id, @Username, @Email, @Password, @Phonenumber, @AccountBalance)";
 
                 using (SQLiteCommand command = new SQLiteCommand(sql, connection))
                 {
@@ -136,6 +136,9 @@ namespace Utility
                     command.Parameters.AddWithValue("@Username", customer.username);
                     command.Parameters.AddWithValue("@Email", customer.email);
                     command.Parameters.AddWithValue("@Password", customer.password);
+                    command.Parameters.AddWithValue("@Phonenumber", customer.phonenumber);
+                    command.Parameters.AddWithValue("@AccountBalance", customer.AccountBalance);
+
 
                     command.ExecuteNonQuery();
                 }
@@ -301,7 +304,7 @@ namespace Utility
                     command.Parameters.AddWithValue("@Weight", post.weight);
                     command.Parameters.AddWithValue("@PhoneNumber", post.phonenumber);
                     command.Parameters.AddWithValue("@Express", post.express ? 1 : 0);
-                    command.Parameters.AddWithValue("@ID", post.id);                    
+                    command.Parameters.AddWithValue("@ID", post.id);
                     command.Parameters.AddWithValue("@SSN", post.SSN);
                     command.Parameters.AddWithValue("@Price", post.price);
                     command.Parameters.AddWithValue("@CustomerOpinion", post.CustomerOpinion);
@@ -338,7 +341,7 @@ namespace Utility
                             post.weight = reader.GetDouble(4);
                             post.phonenumber = reader.GetString(5);
                             post.express = reader.GetInt32(6) == 1;
-                            post.id = reader.GetInt32(7);                            
+                            post.id = reader.GetInt32(7);
                             post.SSN = reader.GetString(8);
                             post.price = reader.GetString(9);
                             post.CustomerOpinion = reader.GetString(10);
@@ -410,7 +413,7 @@ namespace Utility
                     command.Parameters.AddWithValue("@Expensive", post.expensive ? 1 : 0);
                     command.Parameters.AddWithValue("@Weight", post.weight);
                     command.Parameters.AddWithValue("@PhoneNumber", post.phonenumber);
-                    command.Parameters.AddWithValue("@Express", post.express ? 1 : 0);                    
+                    command.Parameters.AddWithValue("@Express", post.express ? 1 : 0);
                     command.Parameters.AddWithValue("@SSN", post.SSN);
                     command.Parameters.AddWithValue("@Price", post.price);
                     command.Parameters.AddWithValue("@CustomerOpinion", post.CustomerOpinion);

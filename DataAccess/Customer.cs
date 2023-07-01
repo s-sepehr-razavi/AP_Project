@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utility;
 
 namespace DataAccess
 {
@@ -16,6 +17,7 @@ namespace DataAccess
         public string password { get; set; }
         public string phonenumber { get;set; }
         public static  List<Customer> customers { get; set; } = new List<Customer>();
+
         public double AccountBalance;
 
         public Customer()
@@ -36,7 +38,7 @@ namespace DataAccess
             Random randomPass = new Random();
             string password = randomPass.Next(10000000, 100000000).ToString();
             this.password = password;
-
+            
             Random random = new Random();
             while (true)
             {
