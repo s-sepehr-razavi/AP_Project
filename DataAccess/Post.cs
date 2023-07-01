@@ -1,8 +1,5 @@
-﻿using CsvHelper;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,19 +8,28 @@ namespace DataAccess
 {
     public class Post
     {
-        public string recieverAddress {  get; set; }
+        public string recieverAddress { get; set; }
         public string senderAddress { get; set; }
         public Content content { get; set; }
         public bool expensive { get; set; }
         public double weight { get; set; }
         public string phonenumber { get; set; }
+        // True =  Express, False = Regular
         public bool express { get; set; }
         public int id { get; set; }
         public string senderID { get; set; }
+        public string SSN { get; set; }
+        public string price { get; set; }
+        public static List<Post> posts { get; set; } = new List<Post>();
+        public string CustomerOpinion = "";
+        public Status PostStaus { get; set; }
 
-        static List<Post> posts { get; set; } = new List<Post>();
+        public Post()
+        {
 
-        public Post(string recieverAddress, string senderAddress, Content content, bool expensive, double weight, string phonenumber, bool express, int id)
+        }
+
+        public Post(string recieverAddress, string senderAddress, Content content, bool expensive, double weight, string phonenumber, bool express, string sSN)
         {
             this.recieverAddress = recieverAddress;
             this.senderAddress = senderAddress;
@@ -34,6 +40,9 @@ namespace DataAccess
             this.express = express;
             posts.Add(this);
             this.id = posts.Count;
+            SSN = sSN;
+            this.PostStaus = Status.Registered;
+            this.price = calculatePrice().ToString();
         }
 
         public double calculatePrice()
@@ -59,16 +68,21 @@ namespace DataAccess
                 price *= 1.5;
             }
 
+            if (weight > 0.5)
+            {
+                int Coefficient = (int)(weight / 0.5);
+                if (weight % 0.5 == 0)
+                {
+                    Coefficient -= 1;
+                }
+                price *= Math.Pow(1.2, Coefficient);
+            }
 
-            return price * Math.Pow(1.2,(int)((int)(weight - 0.5) / 0.5));
+            return price;
         }
 
-        static public List<Post> searchByPrice(double min, double max, List<Post> posts = null)
+        static public List<Post> searchByPrice(double min, double max)
         {
-            if (posts == null)
-            {
-                posts = Post.posts;
-            }
             List<Post> result = new List<Post>();
             foreach (var item in posts)
             {
@@ -79,20 +93,14 @@ namespace DataAccess
                 }
             }
 
-            
             return result;
         }
 
-        static public List<Post> searchByID(string id, List<Post> posts = null)
+        static public List<Post> searchByID(string id)
         {
-            if (posts == null)
-            {
-                posts = Post.posts;
-            }
-
             List<Post> result = new List<Post>();
             foreach (var item in posts)
-            {                
+            {
                 if (item.senderID == id)
                 {
                     result.Add(item);
@@ -102,17 +110,11 @@ namespace DataAccess
             return result;
         }
 
-        static public List<Post> searchByWeight(double min, double max, List<Post> posts = null)
+        static public List<Post> searchByWeight(double min, double max)
         {
-
-            if (posts == null)
-            {
-                posts = Post.posts;
-            }
-
             List<Post> result = new List<Post>();
             foreach (var item in posts)
-            {                
+            {
                 if (item.weight >= min && item.weight <= max)
                 {
                     result.Add(item);
@@ -122,14 +124,8 @@ namespace DataAccess
             return result;
         }
 
-        static public List<Post> searchByPostType(bool exp, List<Post> posts = null)
+        static public List<Post> searchByPostType(bool exp)
         {
-
-            if (posts == null)
-            {
-                posts = Post.posts;
-            }
-
             List<Post> result = new List<Post>();
             foreach (var item in posts)
             {
@@ -142,14 +138,8 @@ namespace DataAccess
             return result;
         }
 
-        static public List<Post> searchByContent(Content content, List<Post> posts = null)
+        static public List<Post> searchByContent(Content content)
         {
-
-            if (posts == null)
-            {
-                posts = Post.posts;
-            }
-
             List<Post> result = new List<Post>();
             foreach (var item in posts)
             {
@@ -162,8 +152,6 @@ namespace DataAccess
             return result;
         }
 
-
-
     }
 
     public enum Content
@@ -173,5 +161,12 @@ namespace DataAccess
         Fragile
     }
 
-    
+    public enum Status
+    {
+        Registered,
+        ReadyToSend,
+        Sending,
+        Deliverd
+    }
+
 }

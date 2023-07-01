@@ -8,6 +8,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{8EB4E75C-1F2F-45AC-B737-35CC8D5978A4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility", "Utility\Utility.csproj", "{74127660-3660-41E6-8E57-7A2D17A3DCFD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8EB4E75C-1F2F-45AC-B737-35CC8D5978A4} = {8EB4E75C-1F2F-45AC-B737-35CC8D5978A4}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
