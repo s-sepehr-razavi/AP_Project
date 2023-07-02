@@ -198,6 +198,8 @@ namespace Utility
                             customer.username = reader.GetString(3);
                             customer.email = reader.GetString(4);
                             customer.password = reader.GetString(5);
+                            customer.phonenumber = reader.GetString(6);
+                            customer.AccountBalance = reader.GetDouble(7);
 
                             customers.Add(customer);
                         }
