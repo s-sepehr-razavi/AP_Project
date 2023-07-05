@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess
 {
-    class Post
+    public class Post
     {
         public string recieverAddress {  get; set; }
         public string senderAddress { get; set; }
@@ -14,13 +14,16 @@ namespace DataAccess
         public bool expensive { get; set; }
         public double weight { get; set; }
         public string phonenumber { get; set; }
+        // True =  Express, False = Regular
         public bool express { get; set; }
         public int id { get; set; }
-        public string senderID { get; set; }
-
-        static List<Post> posts { get; set; } = new List<Post>();
-
-        public Post(string recieverAddress, string senderAddress, Content content, bool expensive, double weight, string phonenumber, bool express, int id)
+        //public string senderID { get; set; }
+        public string SSN { get; set; }
+        public string price { get; set; }
+        public static List<Post> posts { get; set; } = new List<Post>();
+        public Status PostStaus { get; set; }
+        public string CustomerOpinion = "";
+        public Post(string recieverAddress, string senderAddress, Content content, bool expensive, double weight, string phonenumber, bool express, string sSN)
         {
             this.recieverAddress = recieverAddress;
             this.senderAddress = senderAddress;
@@ -31,8 +34,11 @@ namespace DataAccess
             this.express = express;
             posts.Add(this);
             this.id = posts.Count;
+            SSN = sSN;
+            this.PostStaus = Status.Registered;
+            this.price = calculatePrice().ToString();
         }
-
+        public Post() { }
         public double calculatePrice()
         {
             double price = 10000;
@@ -56,8 +62,17 @@ namespace DataAccess
                 price *= 1.5;
             }
 
+            if (weight > 0.5)
+            {
+                int Coefficient = (int)(weight / 0.5);
+                if (weight % 0.5 == 0)
+                {
+                    Coefficient -= 1;
+                }
+                price *= Math.Pow(1.2, Coefficient);
+            }
 
-            return price * Math.Pow(1.2,(int)((int)(weight - 0.5) / 0.5));
+            return price;
         }
 
         static public List<Post> searchByPrice(double min, double max)
@@ -75,19 +90,19 @@ namespace DataAccess
             return result;
         }
 
-        static public List<Post> searchByID(string id)
-        {
-            List<Post> result = new List<Post>();
-            foreach (var item in posts)
-            {                
-                if (item.senderID == id)
-                {
-                    result.Add(item);
-                }
-            }
+        //static public List<Post> searchByID(string id)
+        //{
+        //    List<Post> result = new List<Post>();
+        //    foreach (var item in posts)
+        //    {                
+        //        if (item.senderID == id)
+        //        {
+        //            result.Add(item);
+        //        }
+        //    }
 
-            return result;
-        }
+        //    return result;
+        //}
 
         static public List<Post> searchByWeight(double min, double max)
         {
@@ -133,12 +148,19 @@ namespace DataAccess
 
     }
 
-    enum Content
+    public enum Content
     {
         Object,
         Document,
         Fragile
     }
 
+    public enum Status
+    {
+        Registered,
+        ReadyToSend,
+        Sending,
+        Deliverd
+    }
     
 }
